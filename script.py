@@ -2,7 +2,6 @@
 
 # import Github from the PyGithub library
 from github import Github
-# import os                   # necessary to set github access token via environment variable 
 
 # save Personal Access Code in txt file
 # note: when pasting file path, must replace "\" with "/".
@@ -15,6 +14,14 @@ print('This will be a github api visualisation project')
 
 user = g.get_user()
 
-print("User: " + user.login)
-print("Name: " + user.name)
-print("Location: " + user.location)
+if(user.login!=None):
+   print("User: " + user.login)
+
+if(user.name!=None):
+   print("Name: " + user.name)
+
+if(user.location!=None):
+   print("Location: " + user.location)
+
+if(user.company!=None):
+   print("Company: " + user.company)
