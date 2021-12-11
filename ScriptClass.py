@@ -53,7 +53,7 @@ class ScriptClass:
     # need to import pymongo library to use the code in this function
     def storeDictionaryInDatabase(self, dictionary):
         # Establish a connection
-        connection = ""
+        connection = "mongodb://localhost:27017"         # database must be running to make connection
         client = pymongo.MongoClient(connection)
 
         # Create a database object
@@ -76,3 +76,5 @@ class ScriptClass:
 
         dictionary = self.removeNullDataInDictionary(dictionary)
         print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
+
+        self.storeDictionaryInDatabase(dictionary)

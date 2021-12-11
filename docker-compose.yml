@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - C:/Users/Brendan/Desktop/College_Year_3_S1/Software_Engineering/Assignments/Github_API_Access/mongodb:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+
+# source: https://www.bmc.com/blogs/mongodb-docker-container/
