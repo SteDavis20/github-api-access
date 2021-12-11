@@ -1,8 +1,8 @@
 import unittest                 # testing framework
 
-from ScriptClass import ScriptClass
+from PopulateDatabase import PopulateDatabase
 
-class ScriptTest(unittest.TestCase):
+class PopulateDatabaseTest(unittest.TestCase):
     
     # no need for this test because if it fails, all other tests would fail.
     # Since other tests pass, this method works.
@@ -10,22 +10,22 @@ class ScriptTest(unittest.TestCase):
         # 
 
     def testRetrieveData(self):
-        sc = ScriptClass()
-        user = sc.getGithubUser()
-        self.assertEqual("SteDavis20Stephen DavisKildare", sc.retrieveData(user))
+        pd = PopulateDatabase()
+        user = pd.getGithubUser()
+        self.assertEqual("SteDavis20Stephen DavisKildare", pd.retrieveData(user))
 
     def testExtractDataIntoDictionary(self):
-        sc = ScriptClass()
-        user = sc.getGithubUser()
+        pd = PopulateDatabase()
+        user = pd.getGithubUser()
         dictionary = {"user": "SteDavis20",
                     "fullname": "Stephen Davis",
                     "location": "Kildare",
                     "company": None
                     }
-        self.assertEqual(dictionary, sc.extractDataIntoDictionary(user))
+        self.assertEqual(dictionary, pd.extractDataIntoDictionary(user))
 
     def testRemoveNullDataInDictionary(self):
-        sc = ScriptClass()
+        pd = PopulateDatabase()
         dictionary = {"user": "SteDavis20",
                     "fullname": "Stephen Davis",
                     "location": "Kildare",
@@ -36,5 +36,5 @@ class ScriptTest(unittest.TestCase):
                     "fullname": "Stephen Davis",
                     "location": "Kildare"
         }
-        self.assertEqual(improvedDictionary, sc.removeNullDataInDictionary(dictionary))
+        self.assertEqual(improvedDictionary, pd.removeNullDataInDictionary(dictionary))
 

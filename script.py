@@ -1,5 +1,6 @@
-from ScriptClass import ScriptClass
+from PopulateDatabase import ScriptClass
+from PopulateDatabase import PopulateDatabase
 
-sc = ScriptClass()
-sc.main()
+pd = PopulateDatabase()
+pd.main()
 

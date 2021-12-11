@@ -5,7 +5,7 @@ from github import Github
 import json                    # used for dictionary to string, need to install json library
 import pymongo                 # for mongodb access, need to install pymongo
 
-class ScriptClass:
+class PopulateDatabase:
 # save Personal Access Code in txt file
 # note: when pasting file path, must replace "\" with "/".
 
