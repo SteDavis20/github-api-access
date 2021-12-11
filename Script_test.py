@@ -24,3 +24,17 @@ class ScriptTest(unittest.TestCase):
                     }
         self.assertEqual(dictionary, sc.extractDataIntoDictionary(user))
 
+    def testRemoveNullDataInDictionary(self):
+        sc = ScriptClass()
+        dictionary = {"user": "SteDavis20",
+                    "fullname": "Stephen Davis",
+                    "location": "Kildare",
+                    "company": None
+                    }
+        improvedDictionary = {
+                    "user": "SteDavis20",
+                    "fullname": "Stephen Davis",
+                    "location": "Kildare"
+        }
+        self.assertEqual(improvedDictionary, sc.removeNullDataInDictionary(dictionary))
+

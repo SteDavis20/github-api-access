@@ -3,6 +3,7 @@
 # import Github from the PyGithub library
 from github import Github
 import json                    # used for dictionary to string, need to install json library
+import pymongo                 # for mongodb access, need to install pymongo
 
 class ScriptClass:
 # save Personal Access Code in txt file
@@ -40,7 +41,29 @@ class ScriptClass:
         }
         return dictionary
 
-  
+    # remove null fields in dictionary so we only store actual data in the database.
+    def removeNullDataInDictionary(self, dictionary):
+        for key, value, in dict(dictionary).items():
+            if value is None:
+                del dictionary[key]
+
+        return dictionary
+
+    # remember to have the database running, using docker commands
+    # need to import pymongo library to use the code in this function
+    def storeDictionaryInDatabase(self, dictionary):
+        # Establish a connection
+        connection = ""
+        client = pymongo.MongoClient(connection)
+
+        # Create a database object
+        database = client.classDB
+
+        # githubuser is the name of the collection
+        # if you mistype the collection name, e.g., githubuserr, the data will be stored in the wrong place.
+        database.githubuser.insert_many([dictionary])
+
+
     def main(self):
         user = self.getGithubUser()
         
@@ -51,3 +74,5 @@ class ScriptClass:
         dictionary = self.extractDataIntoDictionary(user)
         print("Dictionary is: " + json.dumps(dictionary))
 
+        dictionary = self.removeNullDataInDictionary(dictionary)
+        print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
