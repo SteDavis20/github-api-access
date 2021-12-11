@@ -1,4 +1,5 @@
 import './App.css';
+import Graph from './Graph';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <Graph/>
       </header>
     </div>
   );
