@@ -61,8 +61,10 @@ class PopulateDatabase:
 
         # githubuser is the name of the collection
         # if you mistype the collection name, e.g., githubuserr, the data will be stored in the wrong place.
+        
+        # note: everytime code is ran, duplicate data is inserted into database
         database.githubuser.insert_many([dictionary])
-
+        print("Successful storage of data in database!")
 
     def main(self):
         user = self.getGithubUser()
