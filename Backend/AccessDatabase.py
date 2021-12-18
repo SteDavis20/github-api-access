@@ -3,7 +3,7 @@
 import pymongo          # for mongodb access
 import pprint           # for pretty printing database data
 
-class AccessDatabase:
+class AccessDatabase(object):
 
     def getData(self, githubuser):
         for user in githubuser:
@@ -24,3 +24,6 @@ class AccessDatabase:
         # if you mistype the collection name, e.g., githubuserr, the data will be stored in the wrong place.
         githubuser = database.githubuser.find()
         self.getData(githubuser)
+
+if __name__ == "__main__":
+    AccessDatabase().main()

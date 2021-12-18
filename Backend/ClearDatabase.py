@@ -3,7 +3,7 @@
 import pymongo          # for mongodb access
 import pprint           # for pretty printing database data
 
-class ClearDatabase:
+class ClearDatabase(object):
 
     def clearData(self):
         # Establish a connection
@@ -21,3 +21,6 @@ class ClearDatabase:
     def main(self):
         print("Trying to clear mongo db database")
         self.clearData()
+
+if __name__ == "__main__":
+    ClearDatabase().main()

@@ -5,7 +5,7 @@ from github import Github
 import json                    # used for dictionary to string, need to install json library
 import pymongo                 # for mongodb access, need to install pymongo
 
-class PopulateDatabase:
+class PopulateDatabase(object):
 # save Personal Access Code in txt file
 # note: when pasting file path, must replace "\" with "/".
 
@@ -80,3 +80,6 @@ class PopulateDatabase:
         print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
 
         self.storeDictionaryInDatabase(dictionary)
+
+if __name__ == "__main__":
+    PopulateDatabase().main()
