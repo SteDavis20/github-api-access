@@ -54,13 +54,14 @@ class PopulateDatabase(object):
 
         return dictionary
 
-    def getFollowerInfo(self, user):
+    def getAndStoreFollowerInfo(self, user):
         followerCount = user.followers
         followers = user.get_followers()
         for follower in followers:
             dictionary = self.extractDataIntoDictionary(follower)
-            self.removeNullDataInDictionary(dictionary)
-            print("follower: " + json.dumps(dictionary))
+            dictionary = self.removeNullDataInDictionary(dictionary)
+            self.storeDictionaryInDatabase(dictionary)
+            #print("follower: " + json.dumps(dictionary))
         return followerCount
 
     # remember to have the database running, using docker commands
@@ -95,7 +96,7 @@ class PopulateDatabase(object):
 
         self.storeDictionaryInDatabase(dictionary)
 
-        self.getFollowerInfo(user)
+        self.getAndStoreFollowerInfo(user)
 
 if __name__ == "__main__":
     PopulateDatabase().main()

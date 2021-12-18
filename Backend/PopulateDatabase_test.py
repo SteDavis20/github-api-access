@@ -14,18 +14,6 @@ class PopulateDatabaseTest(unittest.TestCase):
         user = pd.getGithubUser()
         self.assertEqual("SteDavis20Stephen DavisKildare", pd.retrieveData(user))
 
-    # note: 12 repos at time of testing, this test may fail as more repos will be created over time.
-    def testExtractDataIntoDictionary(self):
-        pd = PopulateDatabase()
-        user = pd.getGithubUser()
-        dictionary = {"user": "SteDavis20",
-                    "fullname": "Stephen Davis",
-                    "location": "Kildare",
-                    "company": None,
-                    "public_repos": 12
-                    }
-        self.assertEqual(dictionary, pd.extractDataIntoDictionary(user))
-
     def testRemoveNullDataInDictionary(self):
         pd = PopulateDatabase()
         dictionary = {"user": "SteDavis20",
@@ -47,7 +35,7 @@ class PopulateDatabaseTest(unittest.TestCase):
     def testGetFollowerData(self):
         pd = PopulateDatabase()
         user = pd.getGithubUser()
-        self.assertEqual(17, pd.getFollowerInfo(user))
+        self.assertEqual(17, pd.getAndStoreFollowerInfo(user))
 
     
     def testAnnonymisation(self):
