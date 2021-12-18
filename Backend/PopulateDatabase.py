@@ -1,9 +1,13 @@
-# need to pip install the PyGithub library
-
 # import Github from the PyGithub library
-from github import Github
+from github import Github      # need to pip install the PyGithub library
 import json                    # used for dictionary to string, need to install json library
 import pymongo                 # for mongodb access, need to install pymongo
+
+# Import faker library - must install faker!
+from faker import Faker     # for anonymising names
+from collections import defaultdict
+faker  = Faker()
+names  = defaultdict(faker.name)
 
 class PopulateDatabase(object):
 # save Personal Access Code in txt file
@@ -34,8 +38,8 @@ class PopulateDatabase(object):
 
     # no need to check for None value since we are not printing value in string format
     def extractDataIntoDictionary(self, user):
-        dictionary = {"user": user.login,
-                    "fullname": user.name,
+        dictionary = {"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
+                    "fullname": names[user.name],                          # annonymise name
                     "location": user.location,
                     "company": user.company,
                     "public_repos": user.public_repos

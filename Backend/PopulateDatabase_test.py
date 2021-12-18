@@ -48,3 +48,16 @@ class PopulateDatabaseTest(unittest.TestCase):
         pd = PopulateDatabase()
         user = pd.getGithubUser()
         self.assertEqual(17, pd.getFollowerInfo(user))
+
+    
+    def testAnnonymisation(self):
+        pd = PopulateDatabase()
+        user = pd.getGithubUser()
+        annonymisedDictionary = pd.extractDataIntoDictionary(user)
+        originalDictionary = {"user": "SteDavis20",
+                            "fullname": "Stephen Davis",
+                            "location": "Kildare",
+                            "company": None,
+                            "public_repos": 12
+                            }
+        self.assertEqual(False, originalDictionary == annonymisedDictionary)
