@@ -37,7 +37,8 @@ class PopulateDatabase(object):
         dictionary = {"user": user.login,
                     "fullname": user.name,
                     "location": user.location,
-                    "company": user.company
+                    "company": user.company,
+                    "public_repos": user.public_repos
         }
         return dictionary
 
@@ -48,6 +49,15 @@ class PopulateDatabase(object):
                 del dictionary[key]
 
         return dictionary
+
+    def getFollowerInfo(self, user):
+        followerCount = user.followers
+        followers = user.get_followers()
+        for follower in followers:
+            dictionary = self.extractDataIntoDictionary(follower)
+            self.removeNullDataInDictionary(dictionary)
+            print("follower: " + json.dumps(dictionary))
+        return followerCount
 
     # remember to have the database running, using docker commands
     # need to import pymongo library to use the code in this function
@@ -80,6 +90,8 @@ class PopulateDatabase(object):
         print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
 
         self.storeDictionaryInDatabase(dictionary)
+
+        self.getFollowerInfo(user)
 
 if __name__ == "__main__":
     PopulateDatabase().main()

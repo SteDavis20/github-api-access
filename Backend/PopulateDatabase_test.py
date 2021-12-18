@@ -14,13 +14,15 @@ class PopulateDatabaseTest(unittest.TestCase):
         user = pd.getGithubUser()
         self.assertEqual("SteDavis20Stephen DavisKildare", pd.retrieveData(user))
 
+    # note: 12 repos at time of testing, this test may fail as more repos will be created over time.
     def testExtractDataIntoDictionary(self):
         pd = PopulateDatabase()
         user = pd.getGithubUser()
         dictionary = {"user": "SteDavis20",
                     "fullname": "Stephen Davis",
                     "location": "Kildare",
-                    "company": None
+                    "company": None,
+                    "public_repos": 12
                     }
         self.assertEqual(dictionary, pd.extractDataIntoDictionary(user))
 
@@ -38,3 +40,11 @@ class PopulateDatabaseTest(unittest.TestCase):
         }
         self.assertEqual(improvedDictionary, pd.removeNullDataInDictionary(dictionary))
 
+
+    # can only test count of followers, because testing collection of individual data would breach privacy of
+    # follower
+    # note: 17 followers at time of writing test, so test may fail as more or less followers will follow over time.
+    def testGetFollowerData(self):
+        pd = PopulateDatabase()
+        user = pd.getGithubUser()
+        self.assertEqual(17, pd.getFollowerInfo(user))
