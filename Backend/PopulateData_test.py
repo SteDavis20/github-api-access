@@ -9,11 +9,6 @@ class PopulateDataTest(unittest.TestCase):
     # def testGetGithubUser(self):
         # 
 
-    def testRetrieveData(self):
-        pd = PopulateData()
-        user = pd.getGithubUser()
-        self.assertEqual("SteDavis20Stephen DavisKildare", pd.retrieveData(user))
-
     def testRemoveNullDataInDictionary(self):
         pd = PopulateData()
         dictionary = {"user": "SteDavis20",

@@ -20,21 +20,6 @@ class PopulateData(object):
         user = g.get_user()
         return user
 
-    def retrieveData(self, user):
-        if(user.login!=None):
-            print("User: " + user.login)
-
-        if(user.name!=None):
-            print("Name: " + user.name)
-
-        if(user.location!=None):
-            print("Location: " + user.location)
-
-        if(user.company!=None):
-            print("Company: " + user.company)
-
-        return user.login+user.name+user.location
-
     # no need to check for None value since we are not printing value in string format
     def extractDataIntoDictionary(self, user):
         dictionary = {"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
@@ -65,10 +50,6 @@ class PopulateData(object):
     def main(self):
         user = self.getGithubUser()
         
-        print('This will be a github api visualisation project')
-        data = self.retrieveData(user)
-        #print(data)
-
         dictionary = self.extractDataIntoDictionary(user)
         print("Dictionary is: " + json.dumps(dictionary))
 
