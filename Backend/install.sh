@@ -2,5 +2,6 @@
 # install pip
 pip install PyGithub
 # json
-python -m pip install pymongo
 pip install faker
+npm install recharts
+npm install d3                      # must install in Visualisation folder

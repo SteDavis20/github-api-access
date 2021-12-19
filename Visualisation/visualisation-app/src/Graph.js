@@ -1,8 +1,11 @@
 import "./Graph.css";
-import React from "react";
-import { BarChart, Bar } from "recharts";
+import React, { useState, useEffect } from "react";
+import { BarChart, Bar, XAxis, YAxis } from "recharts";
+// import Data from "./data.csv"
+// import { csv } from "d3";
+import Data from "./data.json"
 
-const data = [
+/*const data = [
   {
     name: "Page A",
     uv: 4000,
@@ -46,10 +49,25 @@ const data = [
     amt: 2100
   }
 ];
+*/
+
+// const row = d => {
+//   d.population = +d.population;
+//   return d;
+// }
 
 export default function Graph() {
+  //const [actualData, setActualData] = useState([]); 
+
+  //useEffect(() => {
+   // csv(Data, row).then(setActualData);
+  //}, []);
+  
+  
   return (
-    <BarChart width={150} height={40} data={data}>
+    <BarChart width={500} height={500} data={Data}>
+      <XAxis dataKey="name"/>
+      <YAxis />
       <Bar dataKey="uv" fill="#8884d8" />
     </BarChart>
   );
