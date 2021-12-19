@@ -1,1 +1,111 @@
-{"user": "StephanieNavarro", "fullname": "Kristopher Nunez", "location": "Kildare", "public_repos": 12}
+[
+    {
+        "user": "JamesMartinez",
+        "fullname": "Samuel Alexander",
+        "location": "Kildare",
+        "public_repos": 12
+    },
+    {
+        "user": "StephenDrake",
+        "fullname": "Michael Wilson",
+        "location": "Dublin, Ireland",
+        "public_repos": 16
+    },
+    {
+        "user": "NicoleHicks",
+        "fullname": "Joshua Dixon",
+        "location": "Ireland",
+        "company": "@Fonz-Music",
+        "public_repos": 27
+    },
+    {
+        "user": "JackPierce",
+        "fullname": "Emma Hill",
+        "location": "Dublin, Ireland",
+        "company": "@microsoft",
+        "public_repos": 23
+    },
+    {
+        "user": "JessicaBrown",
+        "fullname": "Frank Santos",
+        "public_repos": 6
+    },
+    {
+        "user": "MichelleCrawford",
+        "fullname": "Douglas Robinson",
+        "location": "Dublin, Ireland",
+        "company": "Trinity College Dublin",
+        "public_repos": 13
+    },
+    {
+        "user": "CindySmith",
+        "fullname": "Caitlyn Kramer",
+        "location": "Pacifica, CA | Dublin, Ireland",
+        "public_repos": 8
+    },
+    {
+        "user": "JustinAdams",
+        "fullname": "Connie Brown",
+        "location": "Dublin",
+        "company": "@fonz-music",
+        "public_repos": 3
+    },
+    {
+        "user": "JenniferCurry",
+        "fullname": "Frank Santos",
+        "public_repos": 5
+    },
+    {
+        "user": "RichardWalker",
+        "fullname": "Ashley Marks",
+        "public_repos": 8
+    },
+    {
+        "user": "LisaHerrera",
+        "fullname": "Theresa Berger",
+        "location": "Trinity College Dublin",
+        "public_repos": 6
+    },
+    {
+        "user": "JillianBrown",
+        "fullname": "Frank Santos",
+        "public_repos": 7
+    },
+    {
+        "user": "HenrySmith",
+        "fullname": "Noah Dawson",
+        "company": "Trinity College Dublin",
+        "public_repos": 8
+    },
+    {
+        "user": "WendyBrown",
+        "fullname": "John Hodge",
+        "location": "Dublin",
+        "public_repos": 6
+    },
+    {
+        "user": "CristinaWashington",
+        "fullname": "Frank Santos",
+        "public_repos": 11
+    },
+    {
+        "user": "WilliamJenkins",
+        "fullname": "Rebecca Kirby",
+        "location": "Dublin, Ireland",
+        "company": "Trinity College Dublin",
+        "public_repos": 2
+    },
+    {
+        "user": "SteveAnderson",
+        "fullname": "Tina Anderson",
+        "company": "Trinity College",
+        "public_repos": 2
+    },
+    {
+        "user": "PatriciaArnold",
+        "fullname": "Mr. Michael Hancock Jr.",
+        "location": "Dublin",
+        "company": "Trinity College",
+        "public_repos": 7
+    }
+]

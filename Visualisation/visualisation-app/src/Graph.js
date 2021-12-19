@@ -51,11 +51,9 @@ import Data from "./dataSampleTest.json"
 ];
 */
 
-const actualData = [Data]
-
 function Graph() {
   return (
-    <BarChart width={500} height={500} data={actualData}>
+    <BarChart width={1000} height={500} data={Data}>
       <XAxis dataKey="user"/>
       <YAxis dataKey="public_repos"/>
       <Bar dataKey="public_repos" fill="#8884d8" />

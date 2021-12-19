@@ -40,21 +40,23 @@ class PopulateData(object):
 
         return dictionary
 
-    def getAndStoreFollowerInfo(self, user):
+    def getAndStoreFollowerInfo(self, user, list):
         followerCount = user.followers
         followers = user.get_followers()
         for follower in followers:
             dictionary = self.extractDataIntoDictionary(follower)
             dictionary = self.removeNullDataInDictionary(dictionary)
+            list.append(dictionary)
+            #self.appendDataToJSONFile(dictionary)
             #print("follower: " + json.dumps(dictionary))
-        return followerCount
+        return list
 
-    def writeDataToJSONFile(self, dictionary):
+    def appendDataToJSONFile(self, list):
         save_path = '../Visualisation/visualisation-app/src'
         name_of_file = "dataSampleTest.json"
         completeName = os.path.join(save_path, name_of_file)
-        with open(completeName, 'w') as output_file:
-            json_object = json.dumps(dictionary, indent = 4)
+        with open(completeName, 'a') as output_file:
+            json_object = json.dumps(list, indent = 4)
             output_file.write(json_object)
 
     def main(self):
@@ -66,8 +68,11 @@ class PopulateData(object):
         dictionary = self.removeNullDataInDictionary(dictionary)
         print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
 
-        self.writeDataToJSONFile(dictionary)
-        #self.getAndStoreFollowerInfo(user)
+        dataAsList = []
+        dataAsList.append(dictionary)
+        #self.appendDataToJSONFile(dictionary)
+        dataAsList = self.getAndStoreFollowerInfo(user, dataAsList)
+        self.appendDataToJSONFile(dataAsList)
 
 if __name__ == "__main__":
     PopulateData().main()
