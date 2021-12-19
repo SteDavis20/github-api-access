@@ -1,9 +1,9 @@
 import "./Graph.css";
-import React, { useState, useEffect } from "react";
+import React/*, { useState, useEffect }*/ from "react";
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 // import Data from "./data.csv"
 // import { csv } from "d3";
-import Data from "./data.json"
+import Data from "./dataSampleTest.json"
 
 /*const data = [
   {
@@ -51,24 +51,16 @@ import Data from "./data.json"
 ];
 */
 
-// const row = d => {
-//   d.population = +d.population;
-//   return d;
-// }
+const actualData = [Data]
 
-export default function Graph() {
-  //const [actualData, setActualData] = useState([]); 
-
-  //useEffect(() => {
-   // csv(Data, row).then(setActualData);
-  //}, []);
-  
-  
+function Graph() {
   return (
-    <BarChart width={500} height={500} data={Data}>
-      <XAxis dataKey="name"/>
-      <YAxis />
-      <Bar dataKey="uv" fill="#8884d8" />
+    <BarChart width={500} height={500} data={actualData}>
+      <XAxis dataKey="user"/>
+      <YAxis dataKey="public_repos"/>
+      <Bar dataKey="public_repos" fill="#8884d8" />
     </BarChart>
   );
 }
+
+export default Graph

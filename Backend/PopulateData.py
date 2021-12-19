@@ -1,10 +1,12 @@
 # import Github from the PyGithub library
 from github import Github      # need to pip install the PyGithub library
 import json                    # used for dictionary to string, need to install json library
+import os.path                 # to save JSON data in visualisation src folder
 
 # Import faker library - must install faker!
 from faker import Faker     # for anonymising names
 from collections import defaultdict
+
 faker  = Faker()
 names  = defaultdict(faker.name)
 
@@ -47,16 +49,25 @@ class PopulateData(object):
             #print("follower: " + json.dumps(dictionary))
         return followerCount
 
+    def writeDataToJSONFile(self, dictionary):
+        save_path = '../Visualisation/visualisation-app/src'
+        name_of_file = "dataSampleTest.json"
+        completeName = os.path.join(save_path, name_of_file)
+        with open(completeName, 'w') as output_file:
+            json_object = json.dumps(dictionary, indent = 4)
+            output_file.write(json_object)
+
     def main(self):
         user = self.getGithubUser()
-        
+
         dictionary = self.extractDataIntoDictionary(user)
         print("Dictionary is: " + json.dumps(dictionary))
 
         dictionary = self.removeNullDataInDictionary(dictionary)
         print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
 
-        self.getAndStoreFollowerInfo(user)
+        self.writeDataToJSONFile(dictionary)
+        #self.getAndStoreFollowerInfo(user)
 
 if __name__ == "__main__":
     PopulateData().main()
