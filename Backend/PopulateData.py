@@ -19,16 +19,23 @@ class PopulateData(object):
             token = file.readline()
    
         g = Github(token)
-        user = g.get_user()
+        username = input("Enter username to get data on: ")
+        user = g.get_user(username)
         return user
 
     # no need to check for None value since we are not printing value in string format
     def extractDataIntoDictionary(self, user):
+        followers = user.followers
+        following = user.following
+        ratio = followers/following
         dictionary = {"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
                     "fullname": names[user.name],                          # annonymise name
                     "location": user.location,
                     "company": user.company,
-                    "public_repos": user.public_repos
+                    "public_repos": user.public_repos,
+                    "follower_count": followers,
+                    "following_count": following,
+                    "follower_ratio": ratio
         }
         return dictionary
 
@@ -41,15 +48,41 @@ class PopulateData(object):
         return dictionary
 
     def getAndStoreFollowerInfo(self, user, list):
-        followerCount = user.followers
+        # followerCount = user.followers
         followers = user.get_followers()
         for follower in followers:
             dictionary = self.extractDataIntoDictionary(follower)
             dictionary = self.removeNullDataInDictionary(dictionary)
             list.append(dictionary)
-            #self.appendDataToJSONFile(dictionary)
-            #print("follower: " + json.dumps(dictionary))
+            # self.appendDataToJSONFile(dictionary)
+            # print("follower: " + json.dumps(dictionary))
         return list
+
+
+    # finding "quality" of followers, by dividing followers by number of people they're following,
+    # 3 levels:
+    #           me:
+    #               my followers:
+    #                               followers of my followers
+    def countFollowersOfFollowers(self, user):
+        followers = user.get_followers()
+        followerCount = 0
+        followingCount = 0
+        ratio = 0
+        for follower in followers:
+            followerFollowers = follower.get_followers()
+            #count += follower.followers               # add number of followers each follower has
+            for followerFollower in followerFollowers: 
+                followerCount += followerFollower.followers               # add number of followers each follower has
+                followingCount += followerFollower.following
+        ratio = followerCount/followingCount
+        dictionary = {
+            "user": names[user.login].replace(" ", ""),
+            "accumulated_Followers": followerCount,
+            "accumulated_Following": followingCount,
+            "accumulated_Ratio": ratio
+        }
+        return dictionary
 
     def appendDataToJSONFile(self, list):
         save_path = '../Visualisation/visualisation-app/src'
@@ -62,17 +95,22 @@ class PopulateData(object):
     def main(self):
         user = self.getGithubUser()
 
-        dictionary = self.extractDataIntoDictionary(user)
-        print("Dictionary is: " + json.dumps(dictionary))
+        #dictionary = self.extractDataIntoDictionary(user)
+        #print("Dictionary is: " + json.dumps(dictionary))
 
-        dictionary = self.removeNullDataInDictionary(dictionary)
-        print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
+        #dictionary = self.removeNullDataInDictionary(dictionary)
+        #print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
 
-        dataAsList = []
-        dataAsList.append(dictionary)
-        #self.appendDataToJSONFile(dictionary)
-        dataAsList = self.getAndStoreFollowerInfo(user, dataAsList)
-        self.appendDataToJSONFile(dataAsList)
+        #dataAsList = []
+        #dataAsList.append(dictionary)
+        #self.appendDataToJSONFile(dataAsList)
+
+        followerData = []
+        followerData = self.getAndStoreFollowerInfo(user, followerData)
+
+        dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user)
+        followerData.append(dataOnFollowersOfFollowers)
+        self.appendDataToJSONFile(followerData)
 
 if __name__ == "__main__":
     PopulateData().main()

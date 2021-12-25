@@ -53,7 +53,7 @@ import Data from "./dataSampleTest.json"
 
 function Graph() {
   return (
-    <BarChart width={1000} height={500} data={Data}>
+    <BarChart width={2000} height={500} data={Data}>
       <XAxis dataKey="user"/>
       <YAxis dataKey="public_repos"/>
       <Bar dataKey="public_repos" fill="#8884d8" />

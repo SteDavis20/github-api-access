@@ -1,111 +1,317 @@
 [
     {
-        "user": "JamesMartinez",
-        "fullname": "Samuel Alexander",
-        "location": "Kildare",
-        "public_repos": 12
-    },
-    {
-        "user": "StephenDrake",
-        "fullname": "Michael Wilson",
+        "user": "KarenJensen",
+        "fullname": "Sara Hubbard",
         "location": "Dublin, Ireland",
-        "public_repos": 16
+        "public_repos": 16,
+        "follower_count": 19,
+        "following_count": 27,
+        "follower_ratio": 0.7037037037037037
     },
     {
-        "user": "NicoleHicks",
-        "fullname": "Joshua Dixon",
+        "user": "MichaelPhelps",
+        "fullname": "Joseph Rubio",
         "location": "Ireland",
         "company": "@Fonz-Music",
-        "public_repos": 27
+        "public_repos": 28,
+        "follower_count": 24,
+        "following_count": 27,
+        "follower_ratio": 0.8888888888888888
     },
     {
-        "user": "JackPierce",
-        "fullname": "Emma Hill",
+        "user": "BrettSchultz",
+        "fullname": "Sharon Sanchez",
         "location": "Dublin, Ireland",
         "company": "@microsoft",
-        "public_repos": 23
+        "public_repos": 23,
+        "follower_count": 48,
+        "following_count": 64,
+        "follower_ratio": 0.75
     },
     {
-        "user": "JessicaBrown",
-        "fullname": "Frank Santos",
-        "public_repos": 6
+        "user": "AshleyTaylor",
+        "fullname": "Michael Mendez",
+        "public_repos": 6,
+        "follower_count": 14,
+        "following_count": 23,
+        "follower_ratio": 0.6086956521739131
     },
     {
-        "user": "MichelleCrawford",
-        "fullname": "Douglas Robinson",
+        "user": "TravisHebert",
+        "fullname": "Joshua Stanton",
         "location": "Dublin, Ireland",
         "company": "Trinity College Dublin",
-        "public_repos": 13
+        "public_repos": 13,
+        "follower_count": 15,
+        "following_count": 19,
+        "follower_ratio": 0.7894736842105263
     },
     {
-        "user": "CindySmith",
-        "fullname": "Caitlyn Kramer",
+        "user": "ScottRoss",
+        "fullname": "Elizabeth Levy",
         "location": "Pacifica, CA | Dublin, Ireland",
-        "public_repos": 8
+        "public_repos": 8,
+        "follower_count": 11,
+        "following_count": 18,
+        "follower_ratio": 0.6111111111111112
     },
     {
-        "user": "JustinAdams",
-        "fullname": "Connie Brown",
+        "user": "GlendaJones",
+        "fullname": "Nancy Stewart",
         "location": "Dublin",
         "company": "@fonz-music",
-        "public_repos": 3
+        "public_repos": 3,
+        "follower_count": 17,
+        "following_count": 19,
+        "follower_ratio": 0.8947368421052632
     },
     {
-        "user": "JenniferCurry",
-        "fullname": "Frank Santos",
-        "public_repos": 5
+        "user": "ColtonMyers",
+        "fullname": "Michael Mendez",
+        "public_repos": 5,
+        "follower_count": 6,
+        "following_count": 2,
+        "follower_ratio": 3.0
     },
     {
-        "user": "RichardWalker",
-        "fullname": "Ashley Marks",
-        "public_repos": 8
+        "user": "HeatherFernandez",
+        "fullname": "Sherri Holland",
+        "public_repos": 8,
+        "follower_count": 11,
+        "following_count": 11,
+        "follower_ratio": 1.0
     },
     {
-        "user": "LisaHerrera",
-        "fullname": "Theresa Berger",
+        "user": "KatherineEdwards",
+        "fullname": "Joel Medina",
         "location": "Trinity College Dublin",
-        "public_repos": 6
+        "public_repos": 6,
+        "follower_count": 19,
+        "following_count": 24,
+        "follower_ratio": 0.7916666666666666
     },
     {
-        "user": "JillianBrown",
-        "fullname": "Frank Santos",
-        "public_repos": 7
+        "user": "WilliamLee",
+        "fullname": "Michael Mendez",
+        "public_repos": 7,
+        "follower_count": 11,
+        "following_count": 13,
+        "follower_ratio": 0.8461538461538461
     },
     {
-        "user": "HenrySmith",
-        "fullname": "Noah Dawson",
+        "user": "KaitlynBeasley",
+        "fullname": "Michael Gamble",
         "company": "Trinity College Dublin",
-        "public_repos": 8
+        "public_repos": 8,
+        "follower_count": 18,
+        "following_count": 19,
+        "follower_ratio": 0.9473684210526315
     },
     {
-        "user": "WendyBrown",
-        "fullname": "John Hodge",
+        "user": "JulieCameron",
+        "fullname": "Jill Moore",
         "location": "Dublin",
-        "public_repos": 6
+        "public_repos": 6,
+        "follower_count": 11,
+        "following_count": 23,
+        "follower_ratio": 0.4782608695652174
     },
     {
-        "user": "CristinaWashington",
-        "fullname": "Frank Santos",
-        "public_repos": 11
+        "user": "JulieBauer",
+        "fullname": "Michael Mendez",
+        "public_repos": 11,
+        "follower_count": 16,
+        "following_count": 18,
+        "follower_ratio": 0.8888888888888888
     },
     {
-        "user": "WilliamJenkins",
-        "fullname": "Rebecca Kirby",
+        "user": "KatherineMiller",
+        "fullname": "Brittney Pugh",
         "location": "Dublin, Ireland",
         "company": "Trinity College Dublin",
-        "public_repos": 2
+        "public_repos": 2,
+        "follower_count": 14,
+        "following_count": 16,
+        "follower_ratio": 0.875
     },
     {
-        "user": "SteveAnderson",
-        "fullname": "Tina Anderson",
+        "user": "LauraClayton",
+        "fullname": "Debra Hobbs",
         "company": "Trinity College",
-        "public_repos": 2
+        "public_repos": 2,
+        "follower_count": 1,
+        "following_count": 2,
+        "follower_ratio": 0.5
     },
     {
-        "user": "PatriciaArnold",
-        "fullname": "Mr. Michael Hancock Jr.",
+        "user": "MatthewBanks",
+        "fullname": "Christine Buckley",
         "location": "Dublin",
         "company": "Trinity College",
-        "public_repos": 7
+        "public_repos": 7,
+        "follower_count": 7,
+        "following_count": 16,
+        "follower_ratio": 0.4375
+    }
+][
+    {
+        "user": "CharlotteLyons",
+        "fullname": "Emily West",
+        "location": "Dublin, Ireland",
+        "public_repos": 16,
+        "follower_count": 19,
+        "following_count": 27,
+        "follower_ratio": 0.7037037037037037
+    },
+    {
+        "user": "AngelaFlores",
+        "fullname": "Thomas Hancock",
+        "location": "Ireland",
+        "company": "@Fonz-Music",
+        "public_repos": 28,
+        "follower_count": 24,
+        "following_count": 27,
+        "follower_ratio": 0.8888888888888888
+    },
+    {
+        "user": "CoreyMurray",
+        "fullname": "Jacob Chang",
+        "location": "Dublin, Ireland",
+        "company": "@microsoft",
+        "public_repos": 23,
+        "follower_count": 48,
+        "following_count": 64,
+        "follower_ratio": 0.75
+    },
+    {
+        "user": "RaymondPena",
+        "fullname": "Alexander Simmons",
+        "public_repos": 6,
+        "follower_count": 14,
+        "following_count": 23,
+        "follower_ratio": 0.6086956521739131
+    },
+    {
+        "user": "MichaelAcevedo",
+        "fullname": "Toni Holt",
+        "location": "Dublin, Ireland",
+        "company": "Trinity College Dublin",
+        "public_repos": 13,
+        "follower_count": 15,
+        "following_count": 19,
+        "follower_ratio": 0.7894736842105263
+    },
+    {
+        "user": "BrandyShort",
+        "fullname": "Rodney Ferguson",
+        "location": "Pacifica, CA | Dublin, Ireland",
+        "public_repos": 8,
+        "follower_count": 11,
+        "following_count": 18,
+        "follower_ratio": 0.6111111111111112
+    },
+    {
+        "user": "ReginaKelly",
+        "fullname": "Amy West",
+        "location": "Dublin",
+        "company": "@fonz-music",
+        "public_repos": 3,
+        "follower_count": 17,
+        "following_count": 19,
+        "follower_ratio": 0.8947368421052632
+    },
+    {
+        "user": "MarkTaylor",
+        "fullname": "Alexander Simmons",
+        "public_repos": 5,
+        "follower_count": 6,
+        "following_count": 2,
+        "follower_ratio": 3.0
+    },
+    {
+        "user": "JohnMorales",
+        "fullname": "Joshua Graham",
+        "public_repos": 8,
+        "follower_count": 11,
+        "following_count": 11,
+        "follower_ratio": 1.0
+    },
+    {
+        "user": "BrendaRobinson",
+        "fullname": "Laura Bennett",
+        "location": "Trinity College Dublin",
+        "public_repos": 6,
+        "follower_count": 19,
+        "following_count": 24,
+        "follower_ratio": 0.7916666666666666
+    },
+    {
+        "user": "ChloeSalazar",
+        "fullname": "Alexander Simmons",
+        "public_repos": 7,
+        "follower_count": 11,
+        "following_count": 13,
+        "follower_ratio": 0.8461538461538461
+    },
+    {
+        "user": "CarolMiller",
+        "fullname": "Lee Johnson",
+        "company": "Trinity College Dublin",
+        "public_repos": 8,
+        "follower_count": 18,
+        "following_count": 19,
+        "follower_ratio": 0.9473684210526315
+    },
+    {
+        "user": "VickiMoore",
+        "fullname": "Michelle Mason",
+        "location": "Dublin",
+        "public_repos": 6,
+        "follower_count": 11,
+        "following_count": 23,
+        "follower_ratio": 0.4782608695652174
+    },
+    {
+        "user": "RobertRose",
+        "fullname": "Alexander Simmons",
+        "public_repos": 11,
+        "follower_count": 16,
+        "following_count": 18,
+        "follower_ratio": 0.8888888888888888
+    },
+    {
+        "user": "NicholasDominguez",
+        "fullname": "Keith Wright",
+        "location": "Dublin, Ireland",
+        "company": "Trinity College Dublin",
+        "public_repos": 2,
+        "follower_count": 14,
+        "following_count": 16,
+        "follower_ratio": 0.875
+    },
+    {
+        "user": "TimothyMitchell",
+        "fullname": "Laura Owen",
+        "company": "Trinity College",
+        "public_repos": 2,
+        "follower_count": 1,
+        "following_count": 2,
+        "follower_ratio": 0.5
+    },
+    {
+        "user": "KevinDudley",
+        "fullname": "Diana Hughes",
+        "location": "Dublin",
+        "company": "Trinity College",
+        "public_repos": 7,
+        "follower_count": 7,
+        "following_count": 16,
+        "follower_ratio": 0.4375
+    },
+    {
+        "user": "KarenQuinn",
+        "accumulated_Followers": 9236,
+        "accumulated_Following": 50041,
+        "accumulated_Ratio": 0.18456865370396275
     }
 ]
