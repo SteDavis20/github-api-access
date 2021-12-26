@@ -55,8 +55,8 @@ function Graph() {
   return (
     <BarChart width={2000} height={500} data={Data}>
       <XAxis dataKey="user"/>
-      <YAxis dataKey="public_repos"/>
-      <Bar dataKey="public_repos" fill="#8884d8" />
+      <YAxis dataKey="follower_ratio"/>
+      <Bar dataKey="follower_ratio" fill="#8884d8" />
     </BarChart>
   );
 }

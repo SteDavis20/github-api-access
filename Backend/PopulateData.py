@@ -28,8 +28,11 @@ class PopulateData(object):
         followers = user.followers
         following = user.following
         ratio = followers/following
-        dictionary = {"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
-                    "fullname": names[user.name],                          # annonymise name
+        dictionary = {#"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
+                    
+                    #"fullname": names[user.name],                          # annonymise name
+                    "user": user.login.replace(" ", ""),
+                    "fullname": user.name,
                     "location": user.location,
                     "company": user.company,
                     "public_repos": user.public_repos,
@@ -77,7 +80,9 @@ class PopulateData(object):
                 followingCount += followerFollower.following
         ratio = followerCount/followingCount
         dictionary = {
-            "user": names[user.login].replace(" ", ""),
+            #"user": names[user.login].replace(" ", ""),
+            "user": user.login.replace(" ", ""),
+            "public_repos": user.public_repos,
             "accumulated_Followers": followerCount,
             "accumulated_Following": followingCount,
             "accumulated_Ratio": ratio
