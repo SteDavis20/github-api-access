@@ -1,5 +1,5 @@
 import "./LineChart.css";
-import Data from "./dataSampleTest.json"
+import FollowerData from "./followerData.json"
 import React from "react";
 import {
   LineChart,
@@ -61,7 +61,7 @@ function LineChartFunction() {
     <LineChart
       width={1250}
       height={500}
-      data={Data}
+      data={FollowerData}
       margin={{
         top: 5,
         right: 30,

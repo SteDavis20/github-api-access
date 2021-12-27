@@ -3,7 +3,7 @@ import React/*, { useState, useEffect }*/ from "react";
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 // import Data from "./data.csv"
 // import { csv } from "d3";
-import Data from "./dataSampleTest.json"
+import FollowerData from "./followerData.json"
 
 /*const data = [
   {
@@ -53,7 +53,7 @@ import Data from "./dataSampleTest.json"
 
 function Graph() {
   return (
-    <BarChart width={2000} height={500} data={Data}>
+    <BarChart width={2000} height={500} data={FollowerData}>
       <XAxis dataKey="user"/>
       <YAxis dataKey="follower_ratio"/>
       <Bar dataKey="follower_ratio" fill="#8884d8" />

@@ -1,3 +1,4 @@
+import os
 import unittest                 # testing framework
 
 from PopulateData import PopulateData
@@ -83,7 +84,23 @@ class PopulateDataTest(unittest.TestCase):
 #        self.assertEqual(False, originalDictionary == annonymisedDictionary)
 
 #
-#    def testAppendDataToJsonFile(self):
-#        file = 
-#        self.assertEqual(file, pd.appendDataToJsonFile(user))
-#
+    def testAppendDataToJsonFile(self):
+        pd = PopulateData()
+        data = [
+            {
+                "user": "SteDavis20",
+                "fullname": "Stephen Davis",
+                "location": "Kildare",
+                "public_repos": 13,
+                "follower_count": 17,
+                "following_count": 20,
+                "follower_ratio": 0.85
+            }
+        ]   
+        fileName = "dataSampleTest.json"
+        pd.appendDataToJSONFile(data, fileName)
+        save_path = '../Visualisation/visualisation-app/src'
+        name_of_file = fileName
+        completeName = os.path.join(save_path, name_of_file)
+        readData = open(completeName).read()
+        self.assertEqual(data, readData)

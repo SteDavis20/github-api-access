@@ -19,7 +19,6 @@ class PopulateData(object):
             token = file.readline()
         g = Github(token)
         user = g.get_user(username)
-        print(type(user))
         return user
 
     # no need to check for None value since we are not printing value in string format
@@ -90,7 +89,7 @@ class PopulateData(object):
 
     def appendDataToJSONFile(self, list, fileName):
         save_path = '../Visualisation/visualisation-app/src'
-        name_of_file = "dataSampleTest.json"
+        name_of_file = fileName
         completeName = os.path.join(save_path, name_of_file)
         with open(completeName, 'a') as output_file:
             json_object = json.dumps(list, indent = 4)
@@ -100,22 +99,25 @@ class PopulateData(object):
         username = input("Enter username to get data on: ")
         user = self.getGithubUser(username)
 
-        #dictionary = self.extractDataIntoDictionary(user)
+        dictionary = self.extractDataIntoDictionary(user)
         #print("Dictionary is: " + json.dumps(dictionary))
 
-        #dictionary = self.removeNullDataInDictionary(dictionary)
+        dictionary = self.removeNullDataInDictionary(dictionary)
         #print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
 
-        #dataAsList = []
-        #dataAsList.append(dictionary)
-        #self.appendDataToJSONFile(dataAsList)
 
-        #followerData = []
-        #followerData = self.getFollowerInfo(user, followerData)
+        # NEED TO CREATE 3 json files before appending to them below
 
-        #dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user)
-        #followerData.append(dataOnFollowersOfFollowers)
-        #self.appendDataToJSONFile(followerData)
+        dataOnUser = []
+        dataOnUser.append(dictionary)
+        self.appendDataToJSONFile(dataOnUser, "dataSampleTest.json")
+
+        followerData = []
+        followerData = self.getFollowerInfo(user, followerData)
+        self.appendDataToJSONFile(followerData, "followerData.json")
+
+        dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user)
+        self.appendDataToJSONFile(dataOnFollowersOfFollowers, "accumulatedCount.json")
 
 if __name__ == "__main__":
     PopulateData().main()
