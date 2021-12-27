@@ -14,13 +14,12 @@ class PopulateData(object):
 # save Personal Access Code in txt file
 # note: when pasting file path, must replace "\" with "/".
 
-    def getGithubUser(self):
+    def getGithubUser(self, username):
         with open("C:/Users/Brendan/Documents/PersonalAccessCode.txt") as file:
             token = file.readline()
-   
         g = Github(token)
-        username = input("Enter username to get data on: ")
         user = g.get_user(username)
+        print(type(user))
         return user
 
     # no need to check for None value since we are not printing value in string format
@@ -50,7 +49,7 @@ class PopulateData(object):
 
         return dictionary
 
-    def getAndStoreFollowerInfo(self, user, list):
+    def getFollowerInfo(self, user, list):
         # followerCount = user.followers
         followers = user.get_followers()
         for follower in followers:
@@ -89,7 +88,7 @@ class PopulateData(object):
         }
         return dictionary
 
-    def appendDataToJSONFile(self, list):
+    def appendDataToJSONFile(self, list, fileName):
         save_path = '../Visualisation/visualisation-app/src'
         name_of_file = "dataSampleTest.json"
         completeName = os.path.join(save_path, name_of_file)
@@ -98,7 +97,8 @@ class PopulateData(object):
             output_file.write(json_object)
 
     def main(self):
-        user = self.getGithubUser()
+        username = input("Enter username to get data on: ")
+        user = self.getGithubUser(username)
 
         #dictionary = self.extractDataIntoDictionary(user)
         #print("Dictionary is: " + json.dumps(dictionary))
@@ -110,12 +110,12 @@ class PopulateData(object):
         #dataAsList.append(dictionary)
         #self.appendDataToJSONFile(dataAsList)
 
-        followerData = []
-        followerData = self.getAndStoreFollowerInfo(user, followerData)
+        #followerData = []
+        #followerData = self.getFollowerInfo(user, followerData)
 
-        dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user)
-        followerData.append(dataOnFollowersOfFollowers)
-        self.appendDataToJSONFile(followerData)
+        #dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user)
+        #followerData.append(dataOnFollowersOfFollowers)
+        #self.appendDataToJSONFile(followerData)
 
 if __name__ == "__main__":
     PopulateData().main()
