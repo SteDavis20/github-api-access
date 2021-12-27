@@ -53,7 +53,7 @@ import FollowerData from "./followerData.json"
 
 function Graph() {
   return (
-    <BarChart width={2000} height={500} data={FollowerData}>
+    <BarChart className="graph" width={1400} height={500} data={FollowerData}>
       <XAxis dataKey="user"/>
       <YAxis dataKey="follower_ratio"/>
       <Bar dataKey="follower_ratio" fill="#8884d8" />

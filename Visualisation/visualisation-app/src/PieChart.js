@@ -1,6 +1,6 @@
 import "./PieChart.css";
 import FollowerData from "./followerData.json"
-import React, { useCallback, useState } from "react";
+// import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];

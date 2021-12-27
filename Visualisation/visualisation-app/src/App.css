@@ -1,0 +1,19 @@
+.App {
+    background-color:bisque;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    color: brown; 
+}
+
+.instructions {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    text-decoration: underline;
+    color: blue;
+}
