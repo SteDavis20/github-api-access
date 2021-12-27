@@ -27,7 +27,6 @@ class PopulateData(object):
         following = user.following
         ratio = followers/following
         dictionary = {#"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
-                    
                     #"fullname": names[user.name],                          # annonymise name
                     "user": user.login.replace(" ", ""),
                     "fullname": user.name,
@@ -45,11 +44,9 @@ class PopulateData(object):
         for key, value, in dict(dictionary).items():
             if value is None:
                 del dictionary[key]
-
         return dictionary
 
     def getFollowerInfo(self, user, list):
-        # followerCount = user.followers
         followers = user.get_followers()
         for follower in followers:
             dictionary = self.extractDataIntoDictionary(follower)
