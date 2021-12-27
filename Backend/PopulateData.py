@@ -18,14 +18,26 @@ class PopulateData(object):
         with open("C:/Users/Brendan/Documents/PersonalAccessCode.txt") as file:
             token = file.readline()
         g = Github(token)
-        user = g.get_user(username)
+        
+        try:
+            user = g.get_user(username)
+        except:
+            print("Invalid username, using default user of SteDavis20 instead.")
+            user = g.get_user("SteDavis20")
+
         return user
 
     # no need to check for None value since we are not printing value in string format
     def extractDataIntoDictionary(self, user):
         followers = user.followers
         following = user.following
-        ratio = followers/following
+        try:
+            ratio = followers/following
+        except:
+            print("Division by 0 because user is following 0 people.\nAssigning user minimum following value of 1.")
+            following = 1
+            ratio = followers/following
+
         dictionary = {#"user": names[user.login].replace(" ", ""),   # username provides 2 names, so remove whitespace
                     #"fullname": names[user.name],                          # annonymise name
                     "user": user.login.replace(" ", ""),
@@ -62,7 +74,7 @@ class PopulateData(object):
     #           me:
     #               my followers:
     #                               followers of my followers
-    def countFollowersOfFollowers(self, user):
+    def countFollowersOfFollowers(self, user, list):
         followers = user.get_followers()
         followerCount = 0
         followingCount = 0
@@ -73,7 +85,13 @@ class PopulateData(object):
             for followerFollower in followerFollowers: 
                 followerCount += followerFollower.followers               # add number of followers each follower has
                 followingCount += followerFollower.following
-        ratio = followerCount/followingCount
+        try:
+            ratio = followerCount/followingCount
+        except:
+            print("Division by 0 because user is following 0 people.\nAssigning user minimum following value of 1.")
+            followingCount = 1
+            ratio = followerCount/followingCount
+        
         dictionary = {
             #"user": names[user.login].replace(" ", ""),
             "user": user.login.replace(" ", ""),
@@ -82,7 +100,8 @@ class PopulateData(object):
             "accumulated_Following": followingCount,
             "accumulated_Ratio": ratio
         }
-        return dictionary
+        list.append(dictionary)
+        return list
 
     def appendDataToJSONFile(self, list, fileName):
         save_path = '../Visualisation/visualisation-app/src'
@@ -113,7 +132,8 @@ class PopulateData(object):
         followerData = self.getFollowerInfo(user, followerData)
         self.appendDataToJSONFile(followerData, "followerData.json")
 
-        dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user)
+        dataOnFollowersOfFollowers = []
+        dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user, dataOnFollowersOfFollowers)
         self.appendDataToJSONFile(dataOnFollowersOfFollowers, "accumulatedCount.json")
 
 if __name__ == "__main__":
