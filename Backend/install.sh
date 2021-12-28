@@ -9,3 +9,4 @@ yarn add react-router-dom
 
 
 pip install Flask
+# pip install -U flask-cors
