@@ -6,3 +6,6 @@ pip install faker
 npm install recharts
 npm install d3                      # must install in Visualisation folder
 yarn add react-router-dom
+
+
+pip install Flask

@@ -1,3 +1,4 @@
+import { Line } from 'recharts';
 import './App.css';
 import Graph from './Graph';
 import LineChartFunction from './LineChart';
@@ -46,6 +47,7 @@ function App() {
           One could conclude that the user with 5 followers actually has more valuable followers than the user with
           10 followers.
         </p>
+        
       </header>
     </div>
   );
