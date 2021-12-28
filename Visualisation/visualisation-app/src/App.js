@@ -4,6 +4,7 @@ import Graph from './Graph';
 import LineChartFunction from './LineChart';
 import PieChartFunction from './PieChart';
 import RadarChartFunction from './RadarChart';
+import SearchBar from './SearchBar';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
     <div className="App-test">
       <h1>Testing</h1>
       <p>Testing data output: {testUserData}.</p>
+      <SearchBar/>
     </div>
   )
 
