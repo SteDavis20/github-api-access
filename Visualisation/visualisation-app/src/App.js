@@ -7,22 +7,34 @@ import RadarChartFunction from './RadarChart';
 
 function App() {
 
-  const [testData, setData] = useState([])
+  // const [testData, setData] = useState([])
+  
+  // useEffect(() => {
+  //   fetch("/testing").then(
+  //     res => res.json()
+  //   ).then(
+  //       data => {
+  //         setData(data.test[0] + ", " + data.test[1]);
+  //         console.log(testData)
+  //   });
+  // }, []);
+
+ const [testUserData, setUserData] = useState([])
   
   useEffect(() => {
-    fetch("/testing").then(
+    fetch("/SteDavis20").then(
       res => res.json()
     ).then(
         data => {
-          setData(data.test[0] + ", " + data.test[1]);
-          console.log(testData)
+          setUserData(data.user);
+          console.log(testUserData)
     });
   }, []);
 
   return (
     <div className="App-test">
       <h1>Testing</h1>
-      <p>Testing data output: {testData}.</p>
+      <p>Testing data output: {testUserData}.</p>
     </div>
   )
 
