@@ -1,5 +1,4 @@
 import "./LineChart.css";
-import FollowerData from "./followerData.json"
 import React from "react";
 import {
   LineChart,
@@ -11,12 +10,12 @@ import {
   Legend
 } from "recharts";
 
-function LineChartFunction() {
+function LineChartFunction({data}) {
   return (
     <LineChart className = "graph"
       width={1250}
       height={500}
-      data={FollowerData}
+      data={data}
       margin={{
         top: 5,
         right: 30,
