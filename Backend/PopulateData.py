@@ -136,5 +136,5 @@ class PopulateData(object):
         dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user, dataOnFollowersOfFollowers)
         self.appendDataToJSONFile(dataOnFollowersOfFollowers, "accumulatedCount.json")
 
-if __name__ == "__main__":
-    PopulateData().main()
+# if __name__ == "__main__":
+#     PopulateData().main()

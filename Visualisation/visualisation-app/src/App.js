@@ -20,22 +20,22 @@ function App() {
   //   });
   // }, []);
 
- const [testUserData, setUserData] = useState([])
+//  const [testUserData, setUserData] = useState([])
   
-  useEffect(() => {
-    fetch("/SteDavis20").then(
-      res => res.json()
-    ).then(
-        data => {
-          setUserData(data.user);
-          console.log(testUserData)
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/SteDavis20").then(
+  //     res => res.json()
+  //   ).then(
+  //       data => {
+  //         setUserData(data.user);
+  //         console.log(testUserData)
+  //   });
+  // }, []);
 
   return (
     <div className="App-test">
       <h1>Testing</h1>
-      <p>Testing data output: {testUserData}.</p>
+      {/* <p>Testing data output: {testUserData}.</p> */}
       <SearchBar/>
     </div>
   )
