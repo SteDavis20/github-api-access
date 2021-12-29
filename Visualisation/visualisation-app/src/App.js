@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Component } from 'react';
 import './App.css';
 import Graph from './Graph';
 import LineChartFunction from './LineChart';
@@ -6,51 +6,86 @@ import PieChartFunction from './PieChart';
 import RadarChartFunction from './RadarChart';
 import SearchBar from './SearchBar';
 
-function App() {
+class App extends Component {
 
-  // const [testData, setData] = useState([])
-  
-  // useEffect(() => {
-  //   fetch("/testing").then(
-  //     res => res.json()
-  //   ).then(
-  //       data => {
-  //         setData(data.test[0] + ", " + data.test[1]);
-  //         console.log(testData)
-  //   });
-  // }, []);
+  constructor() {
+    super();
+    this.state = {
+      username: '',
+      userInfo: '',
+      followerInfo: '',
+      accumulatedCountData: ''
+    }
+    this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
+    this.handleFormChange= this.handleFormChange.bind(this);
+  }
+ 
+  handleFormChange(event) {
+    this.setState({username: event.target.value});  
+  }
 
-//  const [testUserData, setUserData] = useState([])
-  
-  // useEffect(() => {
-  //   fetch("/SteDavis20").then(
-  //     res => res.json()
-  //   ).then(
-  //       data => {
-  //         setUserData(data.user);
-  //         console.log(testUserData)
-  //   });
-  // }, []);
+  handleUserFormSubmit(event) {
+    event.preventDefault();
+    this.fetchUserInfo()
+    this.fetchFollowerInfo()
+    this.fetchUserAccmulatedCount()
+    console.log("Username: "+this.state.username)
+    console.log("Follower info: "+this.state.followerInfo)
+    console.log("Accumulated Count: "+this.state.accumulatedCountData)
+  }
+    
+  fetchUserInfo() {
+     fetch("/"+this.state.username+"/info").then(
+      res => res.json()
+      ).then(
+        data => {
+          console.log(data)
+          this.setState({userInfo: data});
+          });
+    console.log("User info: "+this.state.userInfo)
+  }
 
-  return (
-    <div className="App-test">
-      <h1>Testing</h1>
-      {/* <p>Testing data output: {testUserData}.</p> */}
-      <SearchBar/>
-    </div>
-  )
+  fetchFollowerInfo() {
+    fetch("/"+this.state.username+"/followerInfo").then(
+      res => res.json()
+      ).then(
+        data => {
+          this.setState({followerInfo: data});
+    });
+  }
 
-  // return (
-  //   <div className="App">
-  //     <h1>Github API Visualisation</h1>
-  //     <h3 className="instructions">Pass username you want to search into command line terminal</h3>
-  //     <header className="App-header">
-  //     <h2>Basic Follower Ratio</h2>
-  //       <p>The following graph illustrates the ratio of followers to following for a user. For example, a
-  //         user with 10 followers who follows 20 github users would have a ratio of (10/20) = 0.5.
-  //       </p>
-  //       <Graph/>
-  //       <h2>Follower vs Following Count</h2>
+  fetchUserAccmulatedCount() {
+    fetch("/"+this.state.username+"/accumulatedRatio").then(
+      res => res.json()
+      ).then(
+        data => {
+          this.setState({accumulatedCountData: data});
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Github API Visualisation</h1>
+        {/* <h3 className="instructions">Pass username you want to search into command line terminal</h3> */}
+         {/* <header className="App-header"> */}
+        
+        <SearchBar  label="Search Username"
+                    type="text"
+                    id="header-search"
+                    placeholder="Search Username"
+                    name="s"
+                    onChange={this.handleFormChange}
+                    value={this.state.username}
+                    handleUserFormSubmit={this.handleUserFormSubmit}
+        />
+        
+        {/* <h2>Basic Follower Ratio</h2>
+          <p>The following graph illustrates the ratio of followers to following for a user. For example, a
+            user with 10 followers who follows 20 github users would have a ratio of (10/20) = 0.5.
+          </p>  */}
+  {/* //       <Graph/> */}
+  {/* //       <h2>Follower vs Following Count</h2>
   //       <p> The following graph illustrates the difference in follower count and following count of a github
   //         user. The purpose of this graph is to see if there is a significant difference in these values, and
   //         from this one could ask why?
@@ -81,10 +116,11 @@ function App() {
   //         One could conclude that the user with 5 followers actually has more valuable followers than the user with
   //         10 followers.
   //       </p>
-        
-  //     </header>
-  //   </div>
-  // );
+         */}
+      {/* </header> */}
+    </div>
+  );
  }
+}
 
 export default App;
