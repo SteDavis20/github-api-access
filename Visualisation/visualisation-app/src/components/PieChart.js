@@ -1,6 +1,4 @@
 import "./PieChart.css";
-import FollowerData from "./followerData.json"
-// import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -46,7 +44,7 @@ function PieChartFunction({data}) {
         fill="#8884d8"
         dataKey="follower_ratio"
       >
-        {FollowerData.map((entry, index) => (
+        {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>

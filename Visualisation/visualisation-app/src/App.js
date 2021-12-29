@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import './App.css';
-import Graph from './Graph';
-import LineChartFunction from './LineChart';
-import PieChartFunction from './PieChart';
-import RadarChartFunction from './RadarChart';
-import SearchBar from './SearchBar';
+import Graph from './components/Graph';
+import LineChartFunction from './components/LineChart';
+import PieChartFunction from './components/PieChart';
+import RadarChartFunction from './components/RadarChart';
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
 

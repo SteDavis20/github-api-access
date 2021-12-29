@@ -7,11 +7,7 @@ pd = PopulateData()
 
 # cannot return list in app.route methods, must convert to json using json.dumps(list)
 
-# localhost:5000/testing
-@app.route("/testing")
-def get_test_values():
-    return {"test": ["Test1", "Test2"]}
-
+# localhost:5000/SteDavis20/info        - for example
 @app.route("/<username>/info")
 def get_user_info(username):
     user = pd.getGithubUser(username)
