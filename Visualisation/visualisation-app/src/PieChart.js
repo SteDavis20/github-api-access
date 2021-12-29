@@ -33,11 +33,11 @@ const renderCustomizedLabel = ({
   );
 };
 
-function PieChartFunction() {
+function PieChartFunction({data}) {
   return (
     <PieChart width={410} height={410}>
       <Pie
-        data={FollowerData}
+        data={data}
         cx={200}
         cy={200}
         labelLine={false}

@@ -3,11 +3,9 @@ import "./App.css";
 import React from "react";
 import { Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
-import FollowerData from "./followerData.json"
-
-export default function App() {
+function RadarChartGraph({data}) {
   return (
-    <RadarChart className="graph" cx={300} cy={250} outerRadius={200} width={600} height={550} data={FollowerData}>
+    <RadarChart className="graph" cx={300} cy={250} outerRadius={200} width={600} height={550} data={data}>
       <PolarGrid />
       <PolarAngleAxis dataKey="user" />
       <PolarRadiusAxis angle={30} domain={[0, 50]} />
@@ -17,3 +15,5 @@ export default function App() {
     </RadarChart>
   );
 }
+
+export default RadarChartGraph;

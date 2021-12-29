@@ -1,3 +1,18 @@
+.search-bar {
+    text-align: center;
+}
+
+.search-input {
+    text-align: center;
+    width: 200px;
+    height: 30px;
+}
+
+.search-button {
+    width: 200px;
+    height: 30px;
+}
+
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);

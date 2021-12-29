@@ -6,12 +6,12 @@ function SearchBar(props) {
     const {label, type, id, placeholder, name, onChange, value, handleUserFormSubmit} = props    
 
     return (
-        <div>
+        <div className="search-bar">
             <form action="/" method="get">
                 <label htmlFor="header-search">
                     <span className="visually-hidden">{label}</span>
                 </label>
-                <input
+                <input className="search-input"
                     type={type}
                     id={id}
                     placeholder={placeholder}
@@ -19,7 +19,7 @@ function SearchBar(props) {
                     value={value}
                     onChange={onChange}
                 />
-                <button onClick={handleUserFormSubmit} type="submit">Search</button>
+                <button className="search-button"onClick={handleUserFormSubmit} type="submit">Search</button>
             </form>
         </div>
     );
