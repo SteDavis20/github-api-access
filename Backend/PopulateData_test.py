@@ -154,24 +154,67 @@ class PopulateDataTest(unittest.TestCase):
 #                            }
 #        self.assertEqual(False, originalDictionary == annonymisedDictionary)
 
-#
-#    def testAppendDataToJsonFile(self):
-#        pd = PopulateData()
-#        data = [
-#            {
-#                "user": "SteDavis20",
-#                "fullname": "Stephen Davis",
-#                "location": "Kildare",
-#                "public_repos": 13,
-#                "follower_count": 17,
-#                "following_count": 20,
-#                "follower_ratio": 0.85
-#            }
-#        ]   
-#        fileName = "dataSampleTest.json"
-#        pd.appendDataToJSONFile(data, fileName)
-#        save_path = '../Visualisation/visualisation-app/src'
-#        name_of_file = fileName
-#        completeName = os.path.join(save_path, name_of_file)
-#        readData = open(completeName).read()
-#        self.assertEqual(data, readData)
+
+    def testGetRepoNames(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis20")
+        repos = [
+                'College', 'Computer_Networks', 'Flow_Forwarding', 'Functional_Programming',
+                'github-api-access', 'LearnPrologNow', 'measuring-engineering-report',
+                'My-Processing-Projects', 'My_Python_Files', 'Software_Engineer_Biography',
+                'Stock-Market-Price-Visualisation', 'SWENG', 'Web_Development'
+        ]
+        self.assertEqual(repos, pd.getRepoNames(user))
+
+
+    def testGetRepoNamesNoRepos(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis27")
+        repos = []
+        self.assertEqual(repos, pd.getRepoNames(user))
+
+
+
+
+    def testGetRepoContributors(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis20")
+        repos = user.get_repos()
+        repo = repos[0]
+        contributors = [
+            {   "contributor": "SteDavis20",
+                "contributions": 76
+            }
+        ]
+        self.assertEqual(contributors, pd.getContributors(repo))
+
+
+    # can occur when user has not logged in to bash with github profile's gmail account
+    def testGetRepoNoContributors(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis20")
+        repos = user.get_repos()
+        repo = repos[1]
+        contributors = [
+        ]
+        self.assertEqual(contributors, pd.getContributors(repo))
+
+    def testGetLanguageStats(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis20")
+        languageStats = [
+            {
+                'Java': 164758, 'Assembly': 76972, 'Processing': 104064, 'Haskell': 5923, 'Python': 16787930,
+                'C': 42265, 'JavaScript': 21779, 'PowerShell': 18930, 'CSS': 8113, 'HTML': 7522, 'Batchfile': 1375,
+                'Shell': 265, 'Prolog': 25349
+            }
+        ]
+        self.assertEqual(languageStats, pd.getLanguageStats(user))
+
+    def testGetLanguageStatsNoRepos(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis27")
+        languageStats = [
+            {}
+        ]
+        self.assertEqual(languageStats, pd.getLanguageStats(user))

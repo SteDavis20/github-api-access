@@ -172,14 +172,14 @@ class PopulateData(object):
         username = input("Enter username to get data on: ")
         user = self.getGithubUser(username)
 
-        repoNames = self.getRepoNames(user)
-        print(repoNames)
+        #repoNames = self.getRepoNames(user)
+        #print(repoNames)
      
-        repos = user.get_repos()
+        #repos = user.get_repos()
 
-        for repo in repos:
-            contributors = self.getContributors(repo)
-            print(contributors)
+        #for repo in repos:
+        #    contributors = self.getContributors(repo)
+        #    print(contributors)
 
         languageStats = self.getLanguageStats(user)
         print(languageStats)
