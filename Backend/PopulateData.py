@@ -2,6 +2,8 @@
 from github import Github      # need to pip install the PyGithub library
 import json                    # used for dictionary to string, need to install json library
 import os.path                 # to save JSON data in visualisation src folder
+import requests
+
 
 # Import faker library - must install faker!
 from faker import Faker     # for anonymising names
@@ -103,38 +105,84 @@ class PopulateData(object):
         list.append(dictionary)
         return list
 
-    def appendDataToJSONFile(self, list, fileName):
-        save_path = '../Visualisation/visualisation-app/src'
-        name_of_file = fileName
-        completeName = os.path.join(save_path, name_of_file)
-        with open(completeName, 'a') as output_file:
-            json_object = json.dumps(list, indent = 4)
-            output_file.write(json_object)
+    def getRepoNames(self, user):
+        repos = user.get_repos()
+        repoNames = []
+        for repo in repos:
+            repoNames.append(repo.name)
+        
+        return repoNames
+
+    def getContributors(self, repo):
+        contributors = []
+        contributorsURL = repo.contributors_url
+        page = 1
+        while(True):
+            request = requests.get(contributorsURL)
+            data = request.json()
+
+            for contributor in data:
+                dictionary = {
+                    "contributor": contributor['login'],
+                    "contributions": contributor['contributions']
+                }
+                contributors.append(dictionary)
+
+            amount_collected = len(data)
+            if(amount_collected == 30):
+                page = page + 1
+                contributorsURL = contributorsURL + "?page=" + str(page)
+            else:
+                break
+        return contributors        
+
+    def getLanguageStats(self, user):
+        repos = user.get_repos() 
+
+        languageDictionary = {}
+
+        for repo in repos:
+            languageURL = repo.languages_url
+
+            while(True):
+                request = requests.get(languageURL)
+                data = request.json()
+                
+                for key, value in dict(data).items():
+                    if key in languageDictionary:
+                        val = languageDictionary.get(key)
+                        newVal = val + value
+                        languageDictionary[key] = newVal
+                    else:
+                        languageDictionary[key] = value
+
+                amount_collected = len(data)
+                if(amount_collected == 30):
+                    page = page + 1
+                    contributorsURL = contributorsURL + "?page=" + str(page)
+                else:
+                    break
+
+        list = []
+        list.append(languageDictionary)        
+        return list
+
 
     def main(self):
         username = input("Enter username to get data on: ")
         user = self.getGithubUser(username)
 
-        dictionary = self.extractDataIntoDictionary(user)
-        #print("Dictionary is: " + json.dumps(dictionary))
+        repoNames = self.getRepoNames(user)
+        print(repoNames)
+     
+        repos = user.get_repos()
 
-        dictionary = self.removeNullDataInDictionary(dictionary)
-        #print("Dictionary is now cleaned such as: " + json.dumps(dictionary))
+        for repo in repos:
+            contributors = self.getContributors(repo)
+            print(contributors)
 
+        languageStats = self.getLanguageStats(user)
+        print(languageStats)
 
-        # NEED TO CREATE 3 json files before appending to them below
-
-        dataOnUser = []
-        dataOnUser.append(dictionary)
-        self.appendDataToJSONFile(dataOnUser, "dataSampleTest.json")
-
-        followerData = []
-        followerData = self.getFollowerInfo(user, followerData)
-        self.appendDataToJSONFile(followerData, "followerData.json")
-
-        dataOnFollowersOfFollowers = []
-        dataOnFollowersOfFollowers = self.countFollowersOfFollowers(user, dataOnFollowersOfFollowers)
-        self.appendDataToJSONFile(dataOnFollowersOfFollowers, "accumulatedCount.json")
-
-# if __name__ == "__main__":
-#     PopulateData().main()
+if __name__ == "__main__":
+     PopulateData().main()

@@ -2,7 +2,7 @@ import { Component } from 'react';
 import './App.css';
 import Graph from './components/Graph';
 import LineChartFunction from './components/LineChart';
-import PieChartFunction from './components/PieChart';
+// import PieChartFunction from './components/PieChart';
 import RadarChartFunction from './components/RadarChart';
 import SearchBar from './components/SearchBar';
 
@@ -85,9 +85,13 @@ class App extends Component {
           user with 10 followers who follows 20 github users would have a ratio of (10/20) = 0.5.
         </p>
 
-        { !this.state.loading && this.state.followerInfo!==null &&
-          <Graph data={this.state.followerInfo}/>
+        { !this.state.loading && this.state.userInfo!==null &&
+          <Graph data={this.state.userInfo}/>
         }
+
+        {/* { !this.state.loading && this.state.followerInfo!==null &&
+          <Graph data={this.state.followerInfo}/>
+        } */}
         
         <h2>Follower vs Following Count</h2>
         <p> The following graph illustrates the difference in follower count and following count of a github
@@ -95,9 +99,13 @@ class App extends Component {
            from this one could ask why?
         </p>
         
-        { !this.state.loading && this.state.followerInfo!=null &&
-          <LineChartFunction data={this.state.followerInfo}/>
+        { !this.state.loading && this.state.userInfo!=null &&
+          <LineChartFunction data={this.state.userInfo}/>
         }
+
+        {/* { !this.state.loading && this.state.followerInfo!=null &&
+          <LineChartFunction data={this.state.followerInfo}/>
+        } */}
 
         <h2>Follower Ratio</h2>
         <p>This graph highlights the basic follower ratio of each of the given user's followers. One could argue
@@ -105,18 +113,26 @@ class App extends Component {
           than they want to follow.
         </p>
          
-        { !this.state.loading && this.state.followerInfo!==null &&
+        {/* { !this.state.loading && this.state.userInfo!==null &&
+          <PieChartFunction data={this.state.userInfo}/>
+        } */}
+
+        {/* { !this.state.loading && this.state.followerInfo!==null &&
           <PieChartFunction data={this.state.followerInfo}/>
-        }
+        } */}
          
         <h2>Followers VS Repo Count</h2>
         <p>This graph measures the number of followers a user has vs the number of public repositories the user
            has. Perhaps there is a relationship between these values?
         </p>
          
-        { !this.state.loading && this.state.followerInfo!==null &&
-          <RadarChartFunction data={this.state.followerInfo}/>
+        { !this.state.loading && this.state.userInfo!==null &&
+          <RadarChartFunction data={this.state.userInfo}/>
         }
+
+        {/* { !this.state.loading && this.state.followerInfo!==null &&
+          <RadarChartFunction data={this.state.followerInfo}/>
+        } */}
 
         <h2>Accumulated Follower Ratio</h2>
         <p> Comparing the number of followers of one user against the number of followers of another user may

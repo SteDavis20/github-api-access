@@ -1,7 +1,8 @@
 # install python
 # install pip
 pip install PyGithub
-# json
+python -m pip install requests
+# json comes with pip
 pip install faker
 npm install recharts
 # yarn add react-router-dom
