@@ -164,7 +164,13 @@ class PopulateData(object):
                     break
 
         list = []
-        list.append(languageDictionary)        
+        for key, value in dict(languageDictionary).items():
+            rechartFriendlyDict = {
+                "name": key,
+                "value": value
+            }
+            list.append(rechartFriendlyDict)
+            
         return list
 
 

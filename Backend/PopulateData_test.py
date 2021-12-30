@@ -199,6 +199,7 @@ class PopulateDataTest(unittest.TestCase):
         ]
         self.assertEqual(contributors, pd.getContributors(repo))
 
+    # need to update this test as now storing result as list of dictionaries, instead of just 1 dictionary.
     def testGetLanguageStats(self):
         pd = PopulateData()
         user = pd.getGithubUser("SteDavis20")

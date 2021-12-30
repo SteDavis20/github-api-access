@@ -42,7 +42,7 @@ function PieChartFunction({data}) {
         label={renderCustomizedLabel}
         outerRadius={200}
         fill="#8884d8"
-        dataKey="follower_ratio"
+        dataKey="value"
       >
         {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

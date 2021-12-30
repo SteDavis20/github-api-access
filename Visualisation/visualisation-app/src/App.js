@@ -2,7 +2,7 @@ import { Component } from 'react';
 import './App.css';
 import Graph from './components/Graph';
 import LineChartFunction from './components/LineChart';
-// import PieChartFunction from './components/PieChart';
+import PieChartFunction from './components/PieChart';
 import RadarChartFunction from './components/RadarChart';
 import SearchBar from './components/SearchBar';
 
@@ -15,7 +15,8 @@ class App extends Component {
       username: '',
       userInfo: [],
       followerInfo: [],
-      accumulatedCountData: []
+      accumulatedCountData: [],
+      languageStats: []
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -31,6 +32,7 @@ class App extends Component {
     this.fetchUserInfo()
     this.fetchFollowerInfo()
     // this.fetchUserAccmulatedCount()
+    this.fetchLanguageStats()
   }
     
   // to get string version of JSON data use JSON.stringify(data)
@@ -50,7 +52,6 @@ class App extends Component {
       ).then(
         data => {
           this.setState({followerInfo: data});
-          this.setState({loading:false});
     });
   }
 
@@ -62,6 +63,17 @@ class App extends Component {
   //         this.setState({accumulatedCountData: data});
   //   });
   // }
+
+  fetchLanguageStats() {
+    fetch("/"+this.state.username+"/languageStats").then(
+      res => res.json()
+      ).then(
+        data => {
+          this.setState({languageStats: data});
+          console.log(JSON.stringify(this.state.languageStats))
+          this.setState({loading:false});
+    });
+  }
 
   render() {
     return (
@@ -113,9 +125,9 @@ class App extends Component {
           than they want to follow.
         </p>
          
-        {/* { !this.state.loading && this.state.userInfo!==null &&
-          <PieChartFunction data={this.state.userInfo}/>
-        } */}
+        { !this.state.loading && this.state.languageStats!==null &&
+          <PieChartFunction data={this.state.languageStats}/>
+        }
 
         {/* { !this.state.loading && this.state.followerInfo!==null &&
           <PieChartFunction data={this.state.followerInfo}/>
