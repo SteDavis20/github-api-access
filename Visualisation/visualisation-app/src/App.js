@@ -91,62 +91,59 @@ class App extends Component {
                     value={this.state.username}
                     handleUserFormSubmit={this.handleUserFormSubmit}
         />
-        
-        <h2>Basic Follower Ratio</h2>
-        <p>The following graph illustrates the ratio of followers to following for a user. For example, a
-          user with 10 followers who follows 20 github users would have a ratio of (10/20) = 0.5.
-        </p>
 
-        { !this.state.loading && this.state.userInfo!==null &&
-          <Graph data={this.state.userInfo}/>
-        }
-
-        {/* { !this.state.loading && this.state.followerInfo!==null &&
-          <Graph data={this.state.followerInfo}/>
-        } */}
-        
-        <h2>Follower vs Following Count</h2>
-        <p> The following graph illustrates the difference in follower count and following count of a github
-           user. The purpose of this graph is to see if there is a significant difference in these values, and
-           from this one could ask why?
-        </p>
-        
-        { !this.state.loading && this.state.userInfo!=null &&
-          <LineChartFunction data={this.state.userInfo}/>
-        }
-
-        {/* { !this.state.loading && this.state.followerInfo!=null &&
-          <LineChartFunction data={this.state.followerInfo}/>
-        } */}
-
-        <h2>Follower Ratio</h2>
-        <p>This graph highlights the basic follower ratio of each of the given user's followers. One could argue
-          that the higher the ratio a follower has, the more skilled they are since more people want to follow them,
-          than they want to follow.
-        </p>
-         
-        { !this.state.loading && this.state.languageStats!==null &&
-          <PieChartFunction data={this.state.languageStats}/>
-        }
-
-        {/* { !this.state.loading && this.state.followerInfo!==null &&
-          <PieChartFunction data={this.state.followerInfo}/>
-        } */}
-         
+        <h2>Basic User Details</h2>        
+        {/* Display some info on the user, maybe follower count, following count, repo count, if user
+        works for a company  */}
+    
         <h2>Followers VS Repo Count</h2>
         <p>This graph measures the number of followers a user has vs the number of public repositories the user
            has. Perhaps there is a relationship between these values?
         </p>
-         
         { !this.state.loading && this.state.userInfo!==null &&
           <RadarChartFunction data={this.state.userInfo}/>
         }
 
-        {/* { !this.state.loading && this.state.followerInfo!==null &&
-          <RadarChartFunction data={this.state.followerInfo}/>
-        } */}
+        <h2>Followers VS Following Count</h2>
+        <p>This graph measures the number of followers a user has vs the number of public repositories the user
+           has. Perhaps there is a relationship between these values?
+        </p>
+        { !this.state.loading && this.state.userInfo!==null &&
+          <RadarChartFunction data={this.state.userInfo}/>
+        }
 
-        <h2>Accumulated Follower Ratio</h2>
+        <h2>{this.state.username}'s Language Stats</h2>
+        <p>The following pie chart illustrates the usage of different languages seen throughout
+          {this.state.username}'s repositories.
+        </p>
+
+        {/* Have list of the languages in bullet points */}
+
+        { !this.state.loading && this.state.languageStats!==null &&
+          <PieChartFunction data={this.state.languageStats}/>
+        }
+
+        {/* check 'rating' of user's followers by analysing their follower ratio */}
+        <h2>Follower vs Following Count of {this.state.username}'s Followers</h2>
+        <p>The following graph illustrates the difference in followers to following for a user's followers.
+          For example, a user with 10 followers who follows 20 github users would have a ratio of (10/20) = 0.5.
+        </p>
+
+        { !this.state.loading && this.state.followerInfo!=null &&
+          <LineChartFunction data={this.state.followerInfo}/>
+        }
+        
+        <h2>Basic Follower Ratio of {this.state.username}'s Followers</h2>
+        <p>This graph highlights the basic follower ratio of each of the given user's followers. One could argue
+          that the higher the ratio a follower has, the more skilled they are since more people want to follow them,
+          than they want to follow.
+        </p>
+        { !this.state.loading && this.state.followerInfo!=null &&
+          <Graph data={this.state.followerInfo}/>
+        }
+             
+
+        {/* <h2>Accumulated Follower Ratio</h2>
         <p> Comparing the number of followers of one user against the number of followers of another user may
            not be a truely accurate reflection on the "quality" of a software engineer. To get a more in-depth
            comparison one could get the accumulated followers and accumulated number of users one is following.
@@ -159,7 +156,7 @@ class App extends Component {
            user has 20 followers each, then this accumulated follower count = 100 (5*20).
            One could conclude that the user with 5 followers actually has more valuable followers than the user with
            10 followers.
-        </p>   
+        </p>    */}
       </header>
     </div>
   );
