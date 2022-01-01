@@ -1,4 +1,5 @@
 # import Github from the PyGithub library
+from os import name
 from github import Github      # need to pip install the PyGithub library
 import json                    # used for dictionary to string, need to install json library
 import os.path                 # to save JSON data in visualisation src folder
@@ -105,11 +106,19 @@ class PopulateData(object):
         list.append(dictionary)
         return list
 
-    def getRepoNames(self, user):
+    def getRepoDropdownData(self, user):
         repos = user.get_repos()
         repoNames = []
+        id = 0
         for repo in repos:
-            repoNames.append(repo.name)
+            dictionary = {
+                "id": id,
+                "title": repo.name,
+                "selected": False,
+                "key": "repoName"
+            }
+            id = id+1
+            repoNames.append(dictionary)
         
         return repoNames
 

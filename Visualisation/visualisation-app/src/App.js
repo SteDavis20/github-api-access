@@ -18,44 +18,44 @@ class App extends Component {
       followerInfo: [],
       // accumulatedCountData: [],
       languageStats: [],
-      location: [
-        {
-            id: 0,
-            title: 'New York',
-            selected: false,
-            key: 'location'
-        },
-        {
-            id: 1,
-            title: 'Dublin',
-            selected: false,
-            key: 'location'
-        },
-        {
-            id: 2,
-            title: 'California',
-            selected: false,
-            key: 'location'
-        },
-        {
-            id: 3,
-            title: 'Istanbul',
-            selected: false,
-            key: 'location'
-        },
-        {
-            id: 4,
-            title: 'Izmir',
-            selected: false,
-            key: 'location'
-        },
-        {
-            id: 5,
-            title: 'Oslo',
-            selected: false,
-            key: 'location'
-        }
-      ],
+      // location: [
+      //   {
+      //       id: 0,
+      //       title: 'New York',
+      //       selected: false,
+      //       key: 'location'
+      //   },
+      //   {
+      //       id: 1,
+      //       title: 'Dublin',
+      //       selected: false,
+      //       key: 'location'
+      //   },
+      //   {
+      //       id: 2,
+      //       title: 'California',
+      //       selected: false,
+      //       key: 'location'
+      //   },
+      //   {
+      //       id: 3,
+      //       title: 'Istanbul',
+      //       selected: false,
+      //       key: 'location'
+      //   },
+      //   {
+      //       id: 4,
+      //       title: 'Izmir',
+      //       selected: false,
+      //       key: 'location'
+      //   },
+      //   {
+      //       id: 5,
+      //       title: 'Oslo',
+      //       selected: false,
+      //       key: 'location'
+      //   }
+      // ],
       repoDropdownData: []
       // repoNames: [
       //   {
@@ -218,8 +218,8 @@ class App extends Component {
             <h2>{dropdownHeading}</h2>
             <Dropdown 
                       title="Select repo"
-                      list={this.state.location}
-                      // list={this.state.repoDropdownData}
+                      // list={this.state.location}
+                      list={this.state.repoDropdownData}
                       resetThenSet={this.resetThenSet}
             />
 
