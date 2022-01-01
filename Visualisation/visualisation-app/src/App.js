@@ -56,11 +56,12 @@ class App extends Component {
             key: 'location'
         }
       ],
+      repoDropdownData: []
       // repoNames: [
       //   {
       //     id: 0,
-      //     title: 'New York',
-      //     // selected: false,   for multiple selections
+      //     title: "repo-name",
+      //     selected: false,
       //     key: 'location'
       //   }
       // ]
@@ -80,6 +81,7 @@ class App extends Component {
     this.fetchFollowerInfo()
     // this.fetchUserAccmulatedCount()
     this.fetchLanguageStats()
+    this.fetchRepoDropdownData()
   }
     
   // to get string version of JSON data use JSON.stringify(data)
@@ -119,6 +121,15 @@ class App extends Component {
       ).then(
         data => {
           this.setState({languageStats: data});
+    });
+  }
+
+  fetchRepoDropdownData() {
+    fetch("/"+this.state.username+"/repoDropdownData").then(
+      res => res.json()
+      ).then(
+        data => {
+          this.setState({repoDropdownData: data});
           this.setState({loading:false});
     });
   }
@@ -208,6 +219,7 @@ class App extends Component {
             <Dropdown 
                       title="Select repo"
                       list={this.state.location}
+                      // list={this.state.repoDropdownData}
                       resetThenSet={this.resetThenSet}
             />
 

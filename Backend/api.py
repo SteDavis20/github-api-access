@@ -29,11 +29,17 @@ def get_accumulated_ratio(username):
     jsonString = json.dumps(list)    
     return jsonString
 
-# use in front end pie chart
 @app.route("/<username>/languageStats")
 def get_language_stats(username):
     user = pd.getGithubUser(username)
     list = pd.getLanguageStats(user)
+    jsonString = json.dumps(list)    
+    return jsonString
+
+@app.route("/<username>/repoDropdownData")
+def get_repo_dropdown_data(username):
+    user = pd.getGithubUser(username)
+    list = pd.getRepoDropdownData(user)
     jsonString = json.dumps(list)    
     return jsonString
 
