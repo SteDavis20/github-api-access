@@ -102,8 +102,8 @@ class App extends Component {
             <p>This graph measures the number of followers a user has vs the number of public repositories the user
                has. Perhaps there is a relationship between these values?
             </p>
-           {/* <RadarChartFunction data={this.state.userInfo}/> */}
 
+            <Graph comparingSingleUser={true} graphData={this.state.userInfo}/>
 
             <h2>Followers VS Following Count</h2>
             <p>This graph measures the number of followers a user has vs the number of public repositories the user
@@ -141,7 +141,7 @@ class App extends Component {
               than they want to follow.
             </p>
 
-            <Graph data={this.state.followerInfo}/>
+            <Graph comparingSingleUser={false} graphData={this.state.followerInfo}/>
           </>
         }             
 
