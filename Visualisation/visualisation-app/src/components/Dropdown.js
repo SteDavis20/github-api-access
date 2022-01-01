@@ -8,7 +8,8 @@ class Dropdown extends Component {
         super(props)
         this.state = {
           isListOpen: false,
-          headerTitle: this.props.title
+          headerTitle: this.props.title,
+          list: this.props.list
         }
     }
 
@@ -18,19 +19,18 @@ class Dropdown extends Component {
         }))
     }
 
-    selectItem = (item) => {
-        const { resetThenSet } = this.props;
-        const { title, id, key } = item;
+    // selectItem = (item) => {
+    //     const { resetThenSet } = this.props;
+    //     const { title, id, key } = item;
       
-        this.setState({
-            headerTitle: title,
-            isListOpen: false,
-        }, () => resetThenSet(id, key));
-    }
+    //     this.setState({
+    //         headerTitle: title,
+    //         isListOpen: false,
+    //     }, () => resetThenSet(id, key));
+    // }
 
     render() {
-        const { isListOpen, headerTitle } = this.state;
-        const { list } = this.props;
+        const { isListOpen, headerTitle, list } = this.state;
       
         return (
           <div className="dd-wrapper">
@@ -55,7 +55,7 @@ class Dropdown extends Component {
                     	    type="button"
                             className="dd-list-item"
                             key={item.id}
-                            onClick={() => this.selectItem(item)}
+                            onClick={() => this.props.selectItem(item)}
                         >
                         {item.title}
                         {' '}

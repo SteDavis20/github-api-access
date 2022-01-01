@@ -31,20 +31,29 @@ const renderCustomizedLabel = ({
   );
 };
 
-function PieChartFunction({data}) {
+function PieChartFunction(props) {
+  const { usage, graphData } = props;
+  let keyOfData = ""
+  if(usage==="contributors") {
+    keyOfData = "contributor"
+  }
+  else {
+    keyOfData = "value"
+  }
+
   return (
     <PieChart width={410} height={410}>
       <Pie
-        data={data}
+        data={graphData}
         cx={200}
         cy={200}
         labelLine={false}
         label={renderCustomizedLabel}
         outerRadius={200}
         fill="#8884d8"
-        dataKey="value"
+        dataKey={keyOfData}
       >
-        {data.map((entry, index) => (
+        {graphData.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>

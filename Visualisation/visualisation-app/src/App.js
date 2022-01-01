@@ -13,12 +13,15 @@ class App extends Component {
     super();
     this.state = {
       loading: false,
+      loadingRepoContributors: false,
       username: '',
       userInfo: [],
       followerInfo: [],
       // accumulatedCountData: [],
       languageStats: [],
-      repoDropdownData: []
+      repoDropdownData: [],
+      dropdownRepoChoice: '',
+      repoContributorData: []
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -37,7 +40,23 @@ class App extends Component {
     this.fetchLanguageStats()
     this.fetchRepoDropdownData()
   }
-    
+
+  // selectItem = (item) => {
+  //   const { title, id, key } = item;
+  //   this.setState({
+  //     dropdownRepoChoice: title,
+  //   }, () => this.resetThenSet(id, key));
+  //   console.log(this.state.dropdownRepoChoice);
+  // }
+
+  selectItem = (item) => {
+    const { title } = item;
+    this.setState({dropdownRepoChoice: title})
+    console.log(this.state.dropdownRepoChoice)
+    this.setState({loadingRepoContributors: true})
+    this.fetchRepoContributors();
+  }
+
   // to get string version of JSON data use JSON.stringify(data)
   // recharts needs to use JSON object array so do not stringify to pass data into recharts
   fetchUserInfo() { 
@@ -88,6 +107,16 @@ class App extends Component {
     });
   }
 
+  fetchRepoContributors() {
+    fetch("/"+this.state.username+"/"+this.state.dropdownRepoChoice+"/contributors").then(
+      res => res.json()
+      ).then(
+        data => {
+          this.setState({repoContributorData: data});
+          this.setState({loadingRepoContributors:false});
+    });
+  }  
+
   resetThenSet = (id, key) => {
     const temp = [...this.state[key]];
   
@@ -101,7 +130,7 @@ class App extends Component {
 
   render() {
 
-    let dropdownHeading = "Select one of "+ this.state.username +"'s repos to see if he is a key contributor"
+    let dropdownHeading = "Select One Of "+ this.state.username +"'s Repos To See If (S)he Is A Key Contributor"
 
     return (
       <div className="App">
@@ -147,7 +176,9 @@ class App extends Component {
             </p>
 
         {/* Have list of the languages in bullet points */}
-            <PieChartFunction data={this.state.languageStats}/>
+          <PieChartFunction 
+            usage="languages"
+            graphData={this.state.languageStats}/>
           </>
         }
 
@@ -171,14 +202,24 @@ class App extends Component {
 
             <h2>{dropdownHeading}</h2>
             <Dropdown 
-                      title="Select repo"
-                      // list={this.state.location}
                       list={this.state.repoDropdownData}
-                      resetThenSet={this.resetThenSet}
+                      title="Select Repo"
+                      selectItem={this.selectItem}
             />
-
           </>
         }             
+
+        { !this.state.loadingRepoContributors && this.state.repoContributorData.length>0 &&
+            <>
+            <h2>Contributors to {this.state.username}'s {this.state.dropdownRepoChoice} Repo</h2>
+            <PieChartFunction
+              usage="contributors"
+              graphData={this.state.repoContributorData}
+            />
+            </>
+
+        }
+
 
         {/* <h2>Accumulated Follower Ratio</h2>
         <p> Comparing the number of followers of one user against the number of followers of another user may
