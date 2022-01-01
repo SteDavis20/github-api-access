@@ -5,6 +5,7 @@ import LineChartFunction from './components/LineChart';
 import PieChartFunction from './components/PieChart';
 // import RadarChartFunction from './components/RadarChart';
 import SearchBar from './components/SearchBar';
+import Dropdown from './components/Dropdown';
 
 class App extends Component {
 
@@ -15,8 +16,54 @@ class App extends Component {
       username: '',
       userInfo: [],
       followerInfo: [],
-      accumulatedCountData: [],
-      languageStats: []
+      // accumulatedCountData: [],
+      languageStats: [],
+      location: [
+        {
+            id: 0,
+            title: 'New York',
+            selected: false,
+            key: 'location'
+        },
+        {
+            id: 1,
+            title: 'Dublin',
+            selected: false,
+            key: 'location'
+        },
+        {
+            id: 2,
+            title: 'California',
+            selected: false,
+            key: 'location'
+        },
+        {
+            id: 3,
+            title: 'Istanbul',
+            selected: false,
+            key: 'location'
+        },
+        {
+            id: 4,
+            title: 'Izmir',
+            selected: false,
+            key: 'location'
+        },
+        {
+            id: 5,
+            title: 'Oslo',
+            selected: false,
+            key: 'location'
+        }
+      ],
+      // repoNames: [
+      //   {
+      //     id: 0,
+      //     title: 'New York',
+      //     // selected: false,   for multiple selections
+      //     key: 'location'
+      //   }
+      // ]
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -76,7 +123,21 @@ class App extends Component {
     });
   }
 
+  resetThenSet = (id, key) => {
+    const temp = [...this.state[key]];
+  
+    temp.forEach((item) => item.selected = false);
+    temp[id].selected = true;
+  
+    this.setState({
+      [key]: temp,
+    });
+  }  
+
   render() {
+
+    let dropdownHeading = "Select one of "+ this.state.username +"'s repos to see if he is a key contributor"
+
     return (
       <div className="App">
         <h1>Github API Visualisation</h1>
@@ -106,8 +167,8 @@ class App extends Component {
             <Graph comparingSingleUser={true} graphData={this.state.userInfo}/>
 
             <h2>Followers VS Following Count</h2>
-            <p>This graph measures the number of followers a user has vs the number of public repositories the user
-              has. Perhaps there is a relationship between these values?
+            <p>This graph measures the number of followers a user has vs the number of people the user is following
+              . Perhaps there is a relationship between these values?
             </p>
           {/* <RadarChartFunction data={this.state.userInfo}/> */}
           </>
@@ -142,6 +203,14 @@ class App extends Component {
             </p>
 
             <Graph comparingSingleUser={false} graphData={this.state.followerInfo}/>
+
+            <h2>{dropdownHeading}</h2>
+            <Dropdown 
+                      title="Select repo"
+                      list={this.state.location}
+                      resetThenSet={this.resetThenSet}
+            />
+
           </>
         }             
 
