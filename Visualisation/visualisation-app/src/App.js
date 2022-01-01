@@ -3,7 +3,7 @@ import './App.css';
 import Graph from './components/Graph';
 import LineChartFunction from './components/LineChart';
 import PieChartFunction from './components/PieChart';
-import RadarChartFunction from './components/RadarChart';
+// import RadarChartFunction from './components/RadarChart';
 import SearchBar from './components/SearchBar';
 
 class App extends Component {
@@ -42,7 +42,9 @@ class App extends Component {
       res => res.json()
       ).then(
         data => {
-          this.setState({userInfo: data});
+          let list = [];
+          list.push(data);
+          this.setState({userInfo: list});
     });
   }
 
@@ -70,7 +72,6 @@ class App extends Component {
       ).then(
         data => {
           this.setState({languageStats: data});
-          console.log(JSON.stringify(this.state.languageStats))
           this.setState({loading:false});
     });
   }
@@ -92,8 +93,6 @@ class App extends Component {
                     handleUserFormSubmit={this.handleUserFormSubmit}
         />
 
-        {console.log("User Info Length: "+this.state.userInfo.length)}
-        {console.log("User Info: "+this.state.userInfo)}
         { !this.state.loading && this.state.userInfo.length>0 &&
           <>
             <h2>Basic User Details</h2>        
@@ -103,7 +102,7 @@ class App extends Component {
             <p>This graph measures the number of followers a user has vs the number of public repositories the user
                has. Perhaps there is a relationship between these values?
             </p>
-            <RadarChartFunction data={this.state.userInfo}/>
+           {/* <RadarChartFunction data={this.state.userInfo}/> */}
 
 
             <h2>Followers VS Following Count</h2>
