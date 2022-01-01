@@ -115,7 +115,7 @@ class PopulateData(object):
                 "id": id,
                 "title": repo.name,
                 "selected": False,
-                "key": "repoName"
+                "key": "repoDropdownData"
             }
             id = id+1
             repoNames.append(dictionary)
