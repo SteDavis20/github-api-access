@@ -1,11 +1,12 @@
 import "./BarChart.css";
 import React from "react";
-import { BarChart, Bar, XAxis, YAxis } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 function Graph(props) {
   const {comparingSingleUser, graphData} = props 
   return (
-    <BarChart className="graph" width={800} height={400} data={graphData}>
+    // <ResponsiveContainer width={800} height="100%">
+    <BarChart width={1250} height={500} data={graphData}>
       { comparingSingleUser===false &&
         <>
           <XAxis dataKey="user"/>
@@ -22,8 +23,11 @@ function Graph(props) {
           <Bar dataKey="follower_count" fill="#8884d8" />
         </>
       }
-
+      <CartesianGrid/>
+      <Tooltip/>
+      <Legend/>
       </BarChart>
+      // </ResponsiveContainer>
   );
 }
 
