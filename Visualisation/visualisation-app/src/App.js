@@ -96,7 +96,7 @@ class App extends Component {
 
   render() {
 
-    let dropdownHeading = "View List of "+ this.state.username +"'s Repos By Clicking Button Below"
+    let dropdownHeading = "View List of "+ this.state.username +"'s Public Repos By Clicking Button Below"
 
     return (
       <div className="App">
@@ -116,13 +116,13 @@ class App extends Component {
 
         { !this.state.loading && this.state.userInfo.length>0 && this.state.languageStats.length>0 &&
           <>
-            <h2>Basic User Details</h2>        
+            <h2>{this.state.username}'s Details</h2>        
             <UserProfile 
               userData={this.state.userInfo}
               languagesCount={this.state.languagesCount}
             />
     
-            <h2>Followers VS Repo Count</h2>
+            <h2>{this.state.username}'s Repo vs Follower vs Following Count</h2>
             <p>This graph measures the number of followers a user has vs the number of public repositories the user
                has. Perhaps there is a relationship between these values?
             </p>

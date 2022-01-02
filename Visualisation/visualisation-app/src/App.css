@@ -16,8 +16,13 @@ h2 {
     text-align: center;
     text-decoration: underline;
     color: blue;
+    margin-top: 10;
 }
 
 .user-details {
     text-align: center;
+}
+
+* {
+    margin-top: 0;
 }
