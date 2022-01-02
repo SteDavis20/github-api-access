@@ -35,7 +35,7 @@ function PieChartFunction(props) {
   const { usage, graphData } = props;
   let keyOfData = ""
   if(usage==="contributors") {
-    keyOfData = "contributor"
+    keyOfData = "contributions"
   }
   else {
     keyOfData = "value"

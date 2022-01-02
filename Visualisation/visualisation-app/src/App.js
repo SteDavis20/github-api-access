@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import './App.css';
-import Graph from './components/Graph';
+import BarChart from './components/BarChart';
 import LineChartFunction from './components/LineChart';
 import PieChartFunction from './components/PieChart';
-// import RadarChartFunction from './components/RadarChart';
+import RadarChartFunction from './components/RadarChart';
 import SearchBar from './components/SearchBar';
-import Dropdown from './components/Dropdown';
+// import Dropdown from './components/Dropdown';
 
 class App extends Component {
 
@@ -45,17 +45,11 @@ class App extends Component {
   //   const { title, id, key } = item;
   //   this.setState({
   //     dropdownRepoChoice: title,
+  //     loadingRepoContributors: true
   //   }, () => this.resetThenSet(id, key));
   //   console.log(this.state.dropdownRepoChoice);
+  //   this.fetchRepoContributors();
   // }
-
-  selectItem = (item) => {
-    const { title } = item;
-    this.setState({dropdownRepoChoice: title})
-    console.log(this.state.dropdownRepoChoice)
-    this.setState({loadingRepoContributors: true})
-    this.fetchRepoContributors();
-  }
 
   // to get string version of JSON data use JSON.stringify(data)
   // recharts needs to use JSON object array so do not stringify to pass data into recharts
@@ -117,20 +111,20 @@ class App extends Component {
     });
   }  
 
-  resetThenSet = (id, key) => {
-    const temp = [...this.state[key]];
+  // resetThenSet = (id, key) => {
+  //   const temp = [...this.state[key]];
   
-    temp.forEach((item) => item.selected = false);
-    temp[id].selected = true;
+  //   temp.forEach((item) => item.selected = false);
+  //   temp[id].selected = true;
   
-    this.setState({
-      [key]: temp,
-    });
-  }  
+  //   this.setState({
+  //     [key]: temp,
+  //   });
+  // }  
 
   render() {
 
-    let dropdownHeading = "Select One Of "+ this.state.username +"'s Repos To See If (S)he Is A Key Contributor"
+    // let dropdownHeading = "Select One Of "+ this.state.username +"'s Repos To See If (S)he Is A Key Contributor"
 
     return (
       <div className="App">
@@ -158,7 +152,7 @@ class App extends Component {
                has. Perhaps there is a relationship between these values?
             </p>
 
-            <Graph comparingSingleUser={true} graphData={this.state.userInfo}/>
+            <BarChart comparingSingleUser={true} graphData={this.state.userInfo}/>
 
             <h2>Followers VS Following Count</h2>
             <p>This graph measures the number of followers a user has vs the number of people the user is following
@@ -171,8 +165,8 @@ class App extends Component {
         { !this.state.loading && this.state.languageStats.length>0 &&
           <>
             <h2>{this.state.username}'s Language Stats</h2>
-            <p>The following pie chart illustrates the usage of different languages seen throughout
-              {this.state.username}'s repositories.
+            <p>The following pie chart illustrates the usage of different languages seen 
+              throughout {this.state.username}'s repositories.
             </p>
 
         {/* Have list of the languages in bullet points */}
@@ -184,6 +178,13 @@ class App extends Component {
 
         { !this.state.loading && this.state.followerInfo.length>0 &&
           <>        
+          <h2>Followers VS Repo Count of {this.state.username}'s Followers</h2>
+            <p>This graph measures the number of followers a user has vs the number of public repositories the user
+               has. Perhaps there is a relationship between these values?
+            </p>
+
+            <RadarChartFunction graphData={this.state.followerInfo}/>
+
         {/* check 'rating' of user's followers by analysing their follower ratio */}
             <h2>Follower vs Following Count of {this.state.username}'s Followers</h2>
             <p>The following graph illustrates the difference in followers to following for a user's followers.
@@ -198,18 +199,20 @@ class App extends Component {
               than they want to follow.
             </p>
 
-            <Graph comparingSingleUser={false} graphData={this.state.followerInfo}/>
+            <BarChart comparingSingleUser={false} graphData={this.state.followerInfo}/>
 
-            <h2>{dropdownHeading}</h2>
+            {/* <h2>{dropdownHeading}</h2>
             <Dropdown 
                       list={this.state.repoDropdownData}
                       title="Select Repo"
                       selectItem={this.selectItem}
-            />
+            /> */}
+
+
           </>
         }             
 
-        { !this.state.loadingRepoContributors && this.state.repoContributorData.length>0 &&
+        {/* { !this.state.loadingRepoContributors && this.state.repoContributorData.length>0 &&
             <>
             <h2>Contributors to {this.state.username}'s {this.state.dropdownRepoChoice} Repo</h2>
             <PieChartFunction
@@ -218,7 +221,7 @@ class App extends Component {
             />
             </>
 
-        }
+        } */}
 
 
         {/* <h2>Accumulated Follower Ratio</h2>
