@@ -101,43 +101,6 @@ class PopulateDataTest(unittest.TestCase):
 
 #-------------------------------------------------------------------------------------------------------
 
-    def testCountFollowersOfFollowers(self):
-        pd = PopulateData()
-        user = pd.getGithubUser("SteDavis20")
-        dictionary = [{
-            "user": "SteDavis20",
-            "public_repos": 13,
-            "accumulated_Followers": 9279,
-            "accumulated_Following": 50097,
-            "accumulated_Ratio": 0.18522067189652075
-        }]
-        self.assertEqual(dictionary, pd.countFollowersOfFollowers(user, []))
-
-    
-    def testCountFollowersOfFollowersInvalidUser(self):
-        pd = PopulateData()
-        user = pd.getGithubUser("sncxnvjsjdnvjvn")
-        dictionary = [{
-            "user": "SteDavis20",
-            "public_repos": 13,
-            "accumulated_Followers": 9279,
-            "accumulated_Following": 50097,
-            "accumulated_Ratio": 0.18522067189652075
-        }]
-        self.assertEqual(dictionary, pd.countFollowersOfFollowers(user, []))
-
-    # use github user with no followers and not following anyone
-    def testCountFollowersOfFollowersDivideByZeroFollowing(self):
-        pd = PopulateData()
-        user = pd.getGithubUser("SteDavis27")
-        dictionary = [{
-            "user": "SteDavis27",
-            "public_repos": 0,
-            "accumulated_Followers": 0,
-            "accumulated_Following": 1,
-            "accumulated_Ratio": 0
-        }]
-        self.assertEqual(dictionary, pd.countFollowersOfFollowers(user, []))
 
 # cannot test Annonymisation and above methods at same time, comment/un-comment src code in PopulateData.py
 # as appropriate for testing below function. 
@@ -172,9 +135,6 @@ class PopulateDataTest(unittest.TestCase):
         user = pd.getGithubUser("SteDavis27")
         repos = []
         self.assertEqual(repos, pd.getRepoNames(user))
-
-
-
 
     def testGetRepoContributors(self):
         pd = PopulateData()

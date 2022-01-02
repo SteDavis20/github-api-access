@@ -22,13 +22,6 @@ def get_follower_info(username):
     jsonString = json.dumps(list)    
     return jsonString
 
-@app.route("/<username>/accumulatedRatio")
-def get_accumulated_ratio(username):
-    user = pd.getGithubUser(username)
-    list = pd.countFollowersOfFollowers(user, [])
-    jsonString = json.dumps(list)    
-    return jsonString
-
 @app.route("/<username>/languageStats")
 def get_language_stats(username):
     user = pd.getGithubUser(username)

@@ -71,51 +71,13 @@ class PopulateData(object):
             # print("follower: " + json.dumps(dictionary))
         return list
 
-
-    # finding "quality" of followers, by dividing followers by number of people they're following,
-    # 3 levels:
-    #           me:
-    #               my followers:
-    #                               followers of my followers
-    def countFollowersOfFollowers(self, user, list):
-        followers = user.get_followers()
-        followerCount = 0
-        followingCount = 0
-        ratio = 0
-        for follower in followers:
-            followerFollowers = follower.get_followers()
-            #count += follower.followers               # add number of followers each follower has
-            for followerFollower in followerFollowers: 
-                followerCount += followerFollower.followers               # add number of followers each follower has
-                followingCount += followerFollower.following
-        try:
-            ratio = followerCount/followingCount
-        except:
-            print("Division by 0 because user is following 0 people.\nAssigning user minimum following value of 1.")
-            followingCount = 1
-            ratio = followerCount/followingCount
-        
-        dictionary = {
-            #"user": names[user.login].replace(" ", ""),
-            "user": user.login.replace(" ", ""),
-            "public_repos": user.public_repos,
-            "accumulated_Followers": followerCount,
-            "accumulated_Following": followingCount,
-            "accumulated_Ratio": ratio
-        }
-        list.append(dictionary)
-        return list
-
     def getRepoDropdownData(self, user):
         repos = user.get_repos()
         repoNames = []
         id = 0
         for repo in repos:
             dictionary = {
-                "id": id,
                 "title": repo.name,
-                "selected": False,
-                "key": "repoDropdownData"
             }
             id = id+1
             repoNames.append(dictionary)
