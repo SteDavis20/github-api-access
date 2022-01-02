@@ -17,3 +17,7 @@ h2 {
     text-decoration: underline;
     color: blue;
 }
+
+.user-details {
+    text-align: center;
+}

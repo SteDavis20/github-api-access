@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './App.css';
+import UserProfile from './components/UserProfile'
 import BarChart from './components/BarChart';
 import LineChartFunction from './components/LineChart';
 import PieChartFunction from './components/PieChart';
@@ -21,7 +22,8 @@ class App extends Component {
       languageStats: [],
       repoDropdownData: [],
       dropdownRepoChoice: '',
-      repoContributorData: []
+      repoContributorData: [],
+      languagesCount: 0
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
     this.handleFormChange= this.handleFormChange.bind(this);
@@ -35,10 +37,10 @@ class App extends Component {
     event.preventDefault();
     this.setState({loading: true});
     this.fetchUserInfo()
-    this.fetchFollowerInfo()
+    // this.fetchFollowerInfo()
     // this.fetchUserAccmulatedCount()
     this.fetchLanguageStats()
-    this.fetchRepoDropdownData()
+    // this.fetchRepoDropdownData()
   }
 
   // selectItem = (item) => {
@@ -61,6 +63,7 @@ class App extends Component {
           let list = [];
           list.push(data);
           this.setState({userInfo: list});
+          this.setState({loading: false})
     });
   }
 
@@ -88,6 +91,7 @@ class App extends Component {
       ).then(
         data => {
           this.setState({languageStats: data});
+          this.setState({languagesCount: data.length});
     });
   }
 
@@ -142,10 +146,13 @@ class App extends Component {
                     handleUserFormSubmit={this.handleUserFormSubmit}
         />
 
-        { !this.state.loading && this.state.userInfo.length>0 &&
+        { !this.state.loading && this.state.userInfo.length>0 && this.state.languageStats.length>0 &&
           <>
             <h2>Basic User Details</h2>        
-          
+            <UserProfile 
+              userData={this.state.userInfo}
+              languagesCount={this.state.languagesCount}
+            />
     
             <h2>Followers VS Repo Count</h2>
             <p>This graph measures the number of followers a user has vs the number of public repositories the user
