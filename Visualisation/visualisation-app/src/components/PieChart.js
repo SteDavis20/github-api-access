@@ -1,5 +1,5 @@
 import "./PieChart.css";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -42,7 +42,7 @@ function PieChartFunction(props) {
   }
 
   return (
-    <PieChart width={410} height={410}>
+    <PieChart width={610} height={410}>
       <Pie
         data={graphData}
         cx={200}
@@ -57,6 +57,8 @@ function PieChartFunction(props) {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
+      <Tooltip/>
+      <Legend layout="vertical" verticalAlign="top" align="left"/>
     </PieChart>
   );
 }
