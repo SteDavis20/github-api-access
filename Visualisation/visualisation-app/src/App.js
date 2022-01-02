@@ -6,7 +6,7 @@ import LineChartFunction from './components/LineChart';
 import PieChartFunction from './components/PieChart';
 import RadarChartFunction from './components/RadarChart';
 import SearchBar from './components/SearchBar';
-// import Dropdown from './components/Dropdown';
+import Dropdown from './components/Dropdown';
 
 class App extends Component {
 
@@ -18,7 +18,6 @@ class App extends Component {
       username: '',
       userInfo: [],
       followerInfo: [],
-      // accumulatedCountData: [],
       languageStats: [],
       repoDropdownData: [],
       dropdownRepoChoice: '',
@@ -38,20 +37,9 @@ class App extends Component {
     this.setState({loading: true});
     this.fetchUserInfo()
     // this.fetchFollowerInfo()
-    // this.fetchUserAccmulatedCount()
     this.fetchLanguageStats()
-    // this.fetchRepoDropdownData()
+    this.fetchRepoDropdownData()
   }
-
-  // selectItem = (item) => {
-  //   const { title, id, key } = item;
-  //   this.setState({
-  //     dropdownRepoChoice: title,
-  //     loadingRepoContributors: true
-  //   }, () => this.resetThenSet(id, key));
-  //   console.log(this.state.dropdownRepoChoice);
-  //   this.fetchRepoContributors();
-  // }
 
   // to get string version of JSON data use JSON.stringify(data)
   // recharts needs to use JSON object array so do not stringify to pass data into recharts
@@ -75,15 +63,6 @@ class App extends Component {
           this.setState({followerInfo: data});
     });
   }
-
-  // fetchUserAccmulatedCount() {
-  //   fetch("/"+this.state.username+"/accumulatedRatio").then(
-  //     res => res.json()
-  //     ).then(
-  //       data => {
-  //         this.setState({accumulatedCountData: data});
-  //   });
-  // }
 
   fetchLanguageStats() {
     fetch("/"+this.state.username+"/languageStats").then(
@@ -115,20 +94,9 @@ class App extends Component {
     });
   }  
 
-  // resetThenSet = (id, key) => {
-  //   const temp = [...this.state[key]];
-  
-  //   temp.forEach((item) => item.selected = false);
-  //   temp[id].selected = true;
-  
-  //   this.setState({
-  //     [key]: temp,
-  //   });
-  // }  
-
   render() {
 
-    // let dropdownHeading = "Select One Of "+ this.state.username +"'s Repos To See If (S)he Is A Key Contributor"
+    let dropdownHeading = "View List of "+ this.state.username +"'s Repos By Clicking Button Below"
 
     return (
       <div className="App">
@@ -174,6 +142,13 @@ class App extends Component {
           <PieChartFunction 
             usage="languages"
             graphData={this.state.languageStats}/>
+
+            <h2>{dropdownHeading}</h2>
+            <Dropdown 
+                      list={this.state.repoDropdownData}
+                      title="View Repos"
+            />
+
           </>
         }
 
@@ -205,10 +180,8 @@ class App extends Component {
             {/* <h2>{dropdownHeading}</h2>
             <Dropdown 
                       list={this.state.repoDropdownData}
-                      title="Select Repo"
-                      selectItem={this.selectItem}
+                      title="View Repos"
             /> */}
-
 
           </>
         }             
@@ -224,21 +197,6 @@ class App extends Component {
 
         } */}
 
-
-        {/* <h2>Accumulated Follower Ratio</h2>
-        <p> Comparing the number of followers of one user against the number of followers of another user may
-           not be a truely accurate reflection on the "quality" of a software engineer. To get a more in-depth
-           comparison one could get the accumulated followers and accumulated number of users one is following.
-           The accumulated followers is calculated by finding the sum of the number of followers each of the
-           user's followers has. Likewise, the accumulated following value is calculated by finding the sum of the
-           number of users each follower of the user is following. 
-          The purpose here is to emphasise the "quality" of a follower. At first glance, a user who has 10
-           followers may appear to be more followed than a user who has 5 followers. But if each of the 10 followers
-           of the 1st user has only 2 followers each, this value = 20 (10*2). If each of the 5 followers of the 2nd
-           user has 20 followers each, then this accumulated follower count = 100 (5*20).
-           One could conclude that the user with 5 followers actually has more valuable followers than the user with
-           10 followers.
-        </p>    */}
       </header>
     </div>
   );

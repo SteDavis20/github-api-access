@@ -1,6 +1,6 @@
 import "./BarChart.css";
 import React from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 function Graph(props) {
   const {comparingSingleUser, graphData} = props 
@@ -10,7 +10,6 @@ function Graph(props) {
   let cyberGrape = "#613F75"
   
   return (
-    // <ResponsiveContainer width={800} height="100%">
     <BarChart width={1250} height={500} data={graphData}>
       { comparingSingleUser===false &&
         <>
@@ -33,7 +32,6 @@ function Graph(props) {
       <Tooltip/>
       <Legend/>
       </BarChart>
-      // </ResponsiveContainer>
   );
 }
 

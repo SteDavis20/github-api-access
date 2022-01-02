@@ -19,16 +19,6 @@ class Dropdown extends Component {
         }))
     }
 
-    // selectItem = (item) => {
-    //     const { resetThenSet } = this.props;
-    //     const { title, id, key } = item;
-      
-    //     this.setState({
-    //         headerTitle: title,
-    //         isListOpen: false,
-    //     }, () => resetThenSet(id, key));
-    // }
-
     render() {
         const { isListOpen, headerTitle, list } = this.state;
       
@@ -51,16 +41,9 @@ class Dropdown extends Component {
               >
                 {list.map((item) => (
                     <li>
-                        <button
-                    	    type="button"
-                            className="dd-list-item"
-                            key={item.id}
-                            onClick={() => this.props.selectItem(item)}
-                        >
                         {item.title}
                         {' '}
                         {/* {item.selected && <FontAwesome name="check" />} */}
-                        </button>
                     </li>
                 ))}
               </div>
@@ -68,7 +51,6 @@ class Dropdown extends Component {
           </div>
         )
     }
-
 }
 
 export default Dropdown
