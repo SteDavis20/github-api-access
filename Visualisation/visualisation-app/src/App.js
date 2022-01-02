@@ -160,12 +160,6 @@ class App extends Component {
             </p>
 
             <BarChart comparingSingleUser={true} graphData={this.state.userInfo}/>
-
-            <h2>Followers VS Following Count</h2>
-            <p>This graph measures the number of followers a user has vs the number of people the user is following
-              . Perhaps there is a relationship between these values?
-            </p>
-          {/* <RadarChartFunction data={this.state.userInfo}/> */}
           </>
         }
 

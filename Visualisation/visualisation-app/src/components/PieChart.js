@@ -1,7 +1,12 @@
 import "./PieChart.css";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+let ultraRed = "#EF798A"
+let etonBlue = "#7FC29B"
+let cyberGrape = "#613F75"
+let wildBlueYonder = "#8FA6CB"
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", ultraRed, etonBlue, cyberGrape, wildBlueYonder];
 
 const RADIAN = Math.PI / 180;
 
@@ -22,7 +27,7 @@ const renderCustomizedLabel = ({
     <text
       x={x}
       y={y}
-      fill="white"
+      fill="black"
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
     >
