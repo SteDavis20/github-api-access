@@ -54,7 +54,7 @@ class PopulateData(object):
         }
         return dictionary
 
-    # remove null fields in dictionary so we only store actual data in the database.
+    # remove null fields in dictionary so we only store actual data.
     def removeNullDataInDictionary(self, dictionary):
         for key, value, in dict(dictionary).items():
             if value is None:
@@ -67,8 +67,6 @@ class PopulateData(object):
             dictionary = self.extractDataIntoDictionary(follower)
             dictionary = self.removeNullDataInDictionary(dictionary)
             list.append(dictionary)
-            # self.appendDataToJSONFile(dictionary)
-            # print("follower: " + json.dumps(dictionary))
         return list
 
     def getRepoDropdownData(self, user):

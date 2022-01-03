@@ -1,4 +1,3 @@
-import "./LineChart.css";
 import React from "react";
 import {
   LineChart,

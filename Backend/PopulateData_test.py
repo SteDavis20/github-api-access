@@ -10,9 +10,6 @@ class PopulateDataTest(unittest.TestCase):
     #       TESTS MAY FAIL AS NUMBER OF FOLLOWERS AND FOLLOWING CHANGES OVER TIME
 
     #----------------------------------------------------------------------------------------------------------
-
-    # no need for this test because if it fails, all other tests would fail.
-    # Since other tests pass, this method works.
     def testGetGithubUser(self):
         pd = PopulateData()
         username1 = "SteDavis20"
@@ -58,10 +55,7 @@ class PopulateDataTest(unittest.TestCase):
         self.assertEqual(dictionary, pd.extractDataIntoDictionary(user))
 
     def testExtractDataIntoDictionaryDivideByZeroFollowing(self):
-        pd = PopulateData()
-        
-        # need some user following 0 people for test purposes
-        
+        pd = PopulateData()        
         user = pd.getGithubUser("SteDavis27")
         dictionary = {"user": "SteDavis27",
                     "fullname": None,
@@ -100,8 +94,6 @@ class PopulateDataTest(unittest.TestCase):
  #       self.assertEqual(17, pd.getAndStoreFollowerInfo(user))
 
 #-------------------------------------------------------------------------------------------------------
-
-
 # cannot test Annonymisation and above methods at same time, comment/un-comment src code in PopulateData.py
 # as appropriate for testing below function. 
 

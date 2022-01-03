@@ -14,15 +14,12 @@ class App extends Component {
     super();
     this.state = {
       loading: false,
-      loadingRepoContributors: false,
       username: '',
       userInfo: [],
       followerInfo: [],
       accumulatedInfo: [],
       languageStats: [],
       repoDropdownData: [],
-      dropdownRepoChoice: '',
-      repoContributorData: [],
       languagesCount: 0
     }
     this.handleUserFormSubmit = this.handleUserFormSubmit.bind(this);
@@ -151,7 +148,6 @@ class App extends Component {
               throughout {this.state.username}'s repositories.
             </p>
 
-        {/* Have list of the languages in bullet points */}
           <PieChartFunction 
             usage="languages"
             graphData={this.state.languageStats}/>
@@ -174,7 +170,6 @@ class App extends Component {
 
             <RadarChartFunction graphData={this.state.followerInfo}/>
 
-        {/* check 'rating' of user's followers by analysing their follower ratio */}
             <h2>Follower vs Following Count of {this.state.username}'s Followers</h2>
             <p>The following graph illustrates the difference in followers to following for a user's followers.
               For example, a user with 10 followers who follows 20 github users would have a ratio of (10/20) = 0.5.
@@ -189,27 +184,8 @@ class App extends Component {
             </p>
 
             <BarChart comparingSingleUser={false} graphData={this.state.followerInfo}/>
-
-            {/* <h2>{dropdownHeading}</h2>
-            <Dropdown 
-                      list={this.state.repoDropdownData}
-                      title="View Repos"
-            /> */}
-
           </>
         }             
-
-        {/* { !this.state.loadingRepoContributors && this.state.repoContributorData.length>0 &&
-            <>
-            <h2>Contributors to {this.state.username}'s {this.state.dropdownRepoChoice} Repo</h2>
-            <PieChartFunction
-              usage="contributors"
-              graphData={this.state.repoContributorData}
-            />
-            </>
-
-        } */}
-
       </header>
     </div>
   );

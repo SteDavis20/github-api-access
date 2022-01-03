@@ -1,4 +1,3 @@
-import "./PieChart.css";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 let ultraRed = "#EF798A"
