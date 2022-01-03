@@ -18,6 +18,7 @@ class App extends Component {
       username: '',
       userInfo: [],
       followerInfo: [],
+      accumulatedInfo: [],
       languageStats: [],
       repoDropdownData: [],
       dropdownRepoChoice: '',
@@ -36,7 +37,8 @@ class App extends Component {
     event.preventDefault();
     this.setState({loading: true});
     this.fetchUserInfo()
-    // this.fetchFollowerInfo()
+    this.fetchFollowerInfo()
+    this.fetchAccumulatedInfo()
     this.fetchLanguageStats()
     this.fetchRepoDropdownData()
   }
@@ -61,6 +63,16 @@ class App extends Component {
       ).then(
         data => {
           this.setState({followerInfo: data});
+    });
+  }
+
+  fetchAccumulatedInfo() {
+    fetch("/"+this.state.username+"/accumulatedCounts").then(
+      res => res.json()
+      ).then(
+        data => {
+          this.setState({accumulatedInfo: data});
+          console.log(JSON.stringify(this.state.accumulatedInfo))
     });
   }
 

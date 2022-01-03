@@ -18,8 +18,7 @@ class PopulateData(object):
 # note: when pasting file path, must replace "\" with "/".
 
     def getGithubUser(self, username):
-        # with open("C:/Users/Brendan/Documents/PersonalAccessCode.txt") as file:
-        with open("PersonalAccessCode.txt") as file:
+        with open("C:/Users/Brendan/Documents/PersonalAccessToken.txt") as file:
             token = file.readline()
         g = Github(token)
         
@@ -171,18 +170,18 @@ class PopulateData(object):
         return list
 
 
-    def main(self):
-        username = input("Enter username to get data on: ")
-        user = self.getGithubUser(username)
+    #def main(self):
+      #  username = input("Enter username to get data on: ")
+        #user = self.getGithubUser(username)
 
-        userInfo = self.extractDataIntoDictionary(user)
+        #userInfo = self.extractDataIntoDictionary(user)
 
-        followerInfo = self.getFollowerInfo(user, [])
+        #followerInfo = self.getFollowerInfo(user, [])
 
-        accumulatedDict = self.countFollowersOfFollowers(followerInfo)
-        print(userInfo)
-        print(accumulatedDict)
+        #accumulatedDict = self.countFollowersOfFollowers(followerInfo)
+        #print(userInfo)
+        #print(accumulatedDict)
 
 
-if __name__ == "__main__":
-     PopulateData().main()
+# if __name__ == "__main__":
+    # PopulateData().main()

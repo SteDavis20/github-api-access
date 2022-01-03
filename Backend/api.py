@@ -18,8 +18,8 @@ def get_user_info(username):
 @app.route("/<username>/followerInfo")
 def get_follower_info(username):
     user = pd.getGithubUser(username)
-    list = pd.getFollowerInfo(user, [])
-    jsonString = json.dumps(list)    
+    followerInfo = pd.getFollowerInfo(user, [])
+    jsonString = json.dumps(followerInfo)    
     return jsonString
 
 @app.route("/<username>/languageStats")
