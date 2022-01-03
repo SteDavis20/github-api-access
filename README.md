@@ -48,3 +48,9 @@ run-server.sh
 
 
 The website will be hosted on http://localhost:3000
+
+
+# Note on Tests
+To run the test class, the file path specified here in the PopulateData.py file as "PersonalAccessToken.txt" needs to be replaced by the absolute file path of where you have this personal access token text file saved, for example, with "C:\Users\Stephen\Desktop\College_Year_3_S1\Software_Engineering\Assignments\Github_API_Access\github-api-access\PersonalAccessToken.txt"
+
+![Screenshot of instructions for running unit tests](https://github.com/SteDavis20/github-api-access/testing_instruction.png?raw=true)

@@ -83,6 +83,20 @@ class PopulateDataTest(unittest.TestCase):
         }
         self.assertEqual(improvedDictionary, pd.removeNullDataInDictionary(dictionary))
 
+
+    def testRemoveNullDataInDictionaryNoNullData(self):
+        pd = PopulateData()
+        dictionary = {"user": "SteDavis20",
+                    "fullname": "Stephen Davis",
+                    "location": "Kildare",
+                    }
+        improvedDictionary = {
+                    "user": "SteDavis20",
+                    "fullname": "Stephen Davis",
+                    "location": "Kildare"
+        }
+        self.assertEqual(improvedDictionary, pd.removeNullDataInDictionary(dictionary))
+
 #-------------------------------------------------------------------------------------------------------
 
     # can only test count of followers, because testing collection of individual data would breach privacy of
@@ -92,6 +106,11 @@ class PopulateDataTest(unittest.TestCase):
  #       pd = PopulateData()
  #       user = pd.getGithubUser("SteDavis20")
  #       self.assertEqual(17, pd.getAndStoreFollowerInfo(user))
+
+    def testGetFollowerInfoNoFollowers(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis27")
+        self.assertEqual([], pd.getFollowerInfo(user, []))
 
 #-------------------------------------------------------------------------------------------------------
 # cannot test Annonymisation and above methods at same time, comment/un-comment src code in PopulateData.py
@@ -110,7 +129,7 @@ class PopulateDataTest(unittest.TestCase):
 #        self.assertEqual(False, originalDictionary == annonymisedDictionary)
 
 
-    def testGetRepoNames(self):
+    def testGetRepoDropdownData(self):
         pd = PopulateData()
         user = pd.getGithubUser("SteDavis20")
         repos = [
@@ -122,23 +141,24 @@ class PopulateDataTest(unittest.TestCase):
         self.assertEqual(repos, pd.getRepoNames(user))
 
 
-    def testGetRepoNamesNoRepos(self):
+    def testGetRepoDropdownDataNoRepos(self):
         pd = PopulateData()
         user = pd.getGithubUser("SteDavis27")
         repos = []
         self.assertEqual(repos, pd.getRepoNames(user))
-        
+
 
     # need to update this test as now storing result as list of dictionaries, instead of just 1 dictionary.
     def testGetLanguageStats(self):
         pd = PopulateData()
         user = pd.getGithubUser("SteDavis20")
         languageStats = [
-            {
-                'Java': 164758, 'Assembly': 76972, 'Processing': 104064, 'Haskell': 5923, 'Python': 16787930,
-                'C': 42265, 'JavaScript': 21779, 'PowerShell': 18930, 'CSS': 8113, 'HTML': 7522, 'Batchfile': 1375,
-                'Shell': 265, 'Prolog': 25349
-            }
+           # {"name": 'Java', "value": 164758}, 
+           # {"name": 'Assembly': "value" 76972},
+           # {"name": "Processing": 104064, 'Haskell': 5923, 'Python': 16787930,
+           #     'C': 42265, 'JavaScript': 21779, 'PowerShell': 18930, 'CSS': 8113, 'HTML': 7522, 'Batchfile': 1375,
+           #     'Shell': 265, 'Prolog': 25349
+           # }
         ]
         self.assertEqual(languageStats, pd.getLanguageStats(user))
 
@@ -149,3 +169,30 @@ class PopulateDataTest(unittest.TestCase):
             {}
         ]
         self.assertEqual(languageStats, pd.getLanguageStats(user))
+
+
+    def testCountFollowersOfFollowers(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis20")
+        accumulatedData = [
+            {
+                "accumulated_Followers": 263,
+                "accumulated_Following": 340,
+                "accumulated_Ratio":  0.7735294117647059 
+            }
+        ]
+        followerList = pd.getFollowerInfo(user, [])
+        self.assertEqual(accumulatedData, pd.countFollowersOfFollowers(followerList))
+
+
+    def testCountFollowersOfFollowersNoFollowers(self):
+        pd = PopulateData()
+        user = pd.getGithubUser("SteDavis27")
+        accumulatedData = [
+            {
+                "accumulated_Followers": 0,
+                "accumulated_Following": 1,
+                "accumulated_Ratio": 0
+            }
+        ]
+        self.assertEqual(accumulatedData, pd.getLanguageStats(user))
