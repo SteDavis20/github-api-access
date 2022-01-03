@@ -18,7 +18,8 @@ class PopulateData(object):
 # note: when pasting file path, must replace "\" with "/".
 
     def getGithubUser(self, username):
-        with open("C:/Users/Brendan/Documents/PersonalAccessCode.txt") as file:
+        # with open("C:/Users/Brendan/Documents/PersonalAccessCode.txt") as file:
+        with open("PersonalAccessCode.txt") as file:
             token = file.readline()
         g = Github(token)
         
@@ -107,6 +108,7 @@ class PopulateData(object):
                 break
         return contributors        
 
+
     def getLanguageStats(self, user):
         repos = user.get_repos() 
 
@@ -145,21 +147,42 @@ class PopulateData(object):
         return list
 
 
+    def countFollowersOfFollowers(self, followersList):
+        followerCount = 0
+        followingCount = 0
+        ratio = 0
+        for followerDict in followersList:
+            followerCount += followerDict.get("follower_count")
+            followingCount += followerDict.get("following_count")
+        try:
+            ratio = followerCount/followingCount
+        except:
+            print("Division by 0 because user is following 0 people.\nAssigning user minimum following value of 1.")
+            followingCount = 1
+            ratio = followerCount/followingCount
+
+        dictionary = {
+            "accumulated_Followers": followerCount,
+            "accumulated_Following": followingCount,
+            "accumulated_Ratio": ratio
+        }
+        list = []
+        list.append(dictionary)
+        return list
+
+
     def main(self):
         username = input("Enter username to get data on: ")
         user = self.getGithubUser(username)
 
-        #repoNames = self.getRepoNames(user)
-        #print(repoNames)
-     
-        #repos = user.get_repos()
+        userInfo = self.extractDataIntoDictionary(user)
 
-        #for repo in repos:
-        #    contributors = self.getContributors(repo)
-        #    print(contributors)
+        followerInfo = self.getFollowerInfo(user, [])
 
-        languageStats = self.getLanguageStats(user)
-        print(languageStats)
+        accumulatedDict = self.countFollowersOfFollowers(followerInfo)
+        print(userInfo)
+        print(accumulatedDict)
+
 
 if __name__ == "__main__":
      PopulateData().main()
