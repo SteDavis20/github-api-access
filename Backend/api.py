@@ -4,6 +4,8 @@ from PopulateData import *
 app = Flask(__name__)
 
 pd = PopulateData()
+followerInfo = []
+accumulatedInfo = []
 
 # cannot return list in app.route methods, must convert to json using json.dumps(list)
 
@@ -18,8 +20,17 @@ def get_user_info(username):
 @app.route("/<username>/followerInfo")
 def get_follower_info(username):
     user = pd.getGithubUser(username)
+    global followerInfo
     followerInfo = pd.getFollowerInfo(user, [])
     jsonString = json.dumps(followerInfo)    
+    return jsonString
+
+@app.route("/<username>/accumulatedCounts")
+def get_accumulated_counts(username):
+    #jsonString = json.dumps(followerInfo)
+    #print("FOLLOWER INFO: "+jsonString)
+    accumulatedInfo = pd.countFollowersOfFollowers(followerInfo)
+    jsonString = json.dumps(accumulatedInfo)    
     return jsonString
 
 @app.route("/<username>/languageStats")

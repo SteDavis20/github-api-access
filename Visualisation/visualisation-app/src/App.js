@@ -38,7 +38,6 @@ class App extends Component {
     this.setState({loading: true});
     this.fetchUserInfo()
     this.fetchFollowerInfo()
-    this.fetchAccumulatedInfo()
     this.fetchLanguageStats()
     this.fetchRepoDropdownData()
   }
@@ -63,6 +62,7 @@ class App extends Component {
       ).then(
         data => {
           this.setState({followerInfo: data});
+          this.fetchAccumulatedInfo()
     });
   }
 
@@ -72,7 +72,6 @@ class App extends Component {
       ).then(
         data => {
           this.setState({accumulatedInfo: data});
-          console.log(JSON.stringify(this.state.accumulatedInfo))
     });
   }
 
@@ -126,12 +125,14 @@ class App extends Component {
                     handleUserFormSubmit={this.handleUserFormSubmit}
         />
 
-        { !this.state.loading && this.state.userInfo.length>0 && this.state.languageStats.length>0 &&
+        { !this.state.loading && this.state.userInfo.length>0 && 
+        this.state.accumulatedInfo.length>0 && this.state.languageStats.length>0 &&
           <>
             <h2>{this.state.username}'s Details</h2>        
             <UserProfile 
               userData={this.state.userInfo}
               languagesCount={this.state.languagesCount}
+              accumulatedData={this.state.accumulatedInfo}
             />
     
             <h2>{this.state.username}'s Repo vs Follower vs Following Count</h2>

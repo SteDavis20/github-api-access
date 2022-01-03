@@ -3,11 +3,9 @@ import React from "react";
 
 function UserProfile(props) {
 
-    const { userData, languagesCount } = props
+    const { userData, languagesCount, accumulatedData } = props
     
     let data = userData[0]
-
-    console.log({data})
 
     let username = "n/a"
     let fullname = "n/a"
@@ -44,6 +42,11 @@ function UserProfile(props) {
         follower_ratio=data.follower_ratio
     }
 
+    let accumulatedDataCounts = accumulatedData[0]
+    let accumFollowerCount = accumulatedDataCounts.accumulated_Followers
+    let accumFollowingCount = accumulatedDataCounts.accumulated_Following
+    let accumRatio = accumulatedDataCounts.accumulated_Ratio
+
     return (          
           <div className="user-details">
               <p><b>Username:</b> {username}</p>
@@ -55,6 +58,9 @@ function UserProfile(props) {
               <p><b>Follower Count:</b> {follower_count}</p>
               <p><b>Following Count:</b> {following_count}</p>
               <p><b>Follower Ratio:</b> {follower_ratio}</p>
+              <p><b>Accumulated Follower Count:</b> {accumFollowerCount}</p>
+              <p><b>Accumulated Following Count:</b> {accumFollowingCount}</p>
+              <p><b>Accumulated Follower Ratio:</b> {accumRatio}</p>
           </div>
     );
 }
