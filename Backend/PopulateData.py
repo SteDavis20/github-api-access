@@ -18,8 +18,10 @@ class PopulateData(object):
 # note: when pasting file path, must replace "\" with "/".
 
     def getGithubUser(self, username):
-        with open("C:/Users/Brendan/Documents/PersonalAccessToken.txt") as file:
+        #with open("C:/Users/Brendan/Documents/PersonalAccessToken.txt") as file:
+        with open("PersonalAccessToken.txt") as file:         
             token = file.readline()
+        
         g = Github(token)
         
         try:
