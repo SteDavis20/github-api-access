@@ -21,6 +21,7 @@ cd Backend
 
 For front-end make sure node is installed.
 Then in a separate terminal same again for front end:
+
 cd Visualisation
 
 cd visualisation-app
