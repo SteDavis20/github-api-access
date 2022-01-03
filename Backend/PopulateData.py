@@ -170,17 +170,17 @@ class PopulateData(object):
         return list
 
 
-    #def main(self):
-      #  username = input("Enter username to get data on: ")
-        #user = self.getGithubUser(username)
+    # def main(self):
+    #   username = input("Enter username to get data on: ")
+    #   user = self.getGithubUser(username)
 
-        #userInfo = self.extractDataIntoDictionary(user)
+    #   userInfo = self.extractDataIntoDictionary(user)
 
-        #followerInfo = self.getFollowerInfo(user, [])
+    #   followerInfo = self.getFollowerInfo(user, [])
 
-        #accumulatedDict = self.countFollowersOfFollowers(followerInfo)
-        #print(userInfo)
-        #print(accumulatedDict)
+    #   accumulatedDict = self.countFollowersOfFollowers(followerInfo)
+    #   print(userInfo)
+    #   print(accumulatedDict)
 
 
 # if __name__ == "__main__":

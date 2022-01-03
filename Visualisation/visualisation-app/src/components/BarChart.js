@@ -28,7 +28,9 @@ function Graph(props) {
         </>
       }
       <CartesianGrid/>
-      <Tooltip/>
+      { comparingSingleUser===false &&
+        <Tooltip/>
+      }
       <Legend/>
       </BarChart>
   );

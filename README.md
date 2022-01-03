@@ -1,28 +1,31 @@
 # Measuring Software Engineering Through the Github API
-The main topic I was interested in for this project was to try and determine why some Github users have more followers than others. Does the number of repositories a user have affect his/her follower count? Maybe it is nothing to do with the skill of the engineer, and it is just the case where if you follow a user they follow you back (this would be reflected by an even follower-following ratio)?
+The main topic I was interested in for this project was to see the quality of followers a given user has, where the quality of a follower is determined by their follower to following ratio. Let's say you have 2 users: user A and user B. User A has 100 followers and User B has 10 followers. Initiailly, User A would appear to be more impressive than User B. However, let's then say each of User B's 10 followers all have 100 followers each, whereas each of User A's 100 followers only have 2 followers each. Then, user A would have an accumulated follower count of 100x2 = 200 followers, and User B would have an accumulated follower count of 10x100 = 1,000 followers. Now User B appears to be more impressive.
 
 
-In addition to this, this project was undertaken to compare the quality of followers a given user has. Initially, one user, let's say user A, with 100 followers, would appear to be more impressive than a user, let's say user B, who has 10 followers. But what if each of user A's 100 followers only has 2 followers each, whereas each of user B's 10 followers all have 100 followers each. Then, user A would have an accumulated follower count of 100x2 = 200 followers, and user B would have 10x100 = 1,000 followers.
-
-
-Another factor worth analysing is the follower-ratio of a user, measured by dividing the number of followers a user has, by the number of people the user is following.
+In addition to this, I wanted to try and determine what causes a "good" follower to follower someone. Does the number of repositories a user have affect his/her follower count? Maybe it is nothing to do with the skill of the engineer, and it is just the case where if you follow a user they follow you back (this would be reflected by an even follower-following ratio)?
 
 
 Language statistics can also play a part in your total follower count; some followers may follow users because they are skilled in a language that the follower is only beginning to learn.
 
 
-Work ethic may also play a role in determining the number of followers a user has. To analyse this, the percentage contribution a user makes towards a repo is displayed in this project. The best uses of this metric are when the repo has multiple contributors.
-
-
 # To Run the Project:
-A valid github user token is required, details to follow...
+A valid github user token is required. My personal access token is used to run this project and is read from the "PersonalAccessToken.txt" file in this repo.
+
+Make sure python, pip and node are installed.
 
 Install all the relevant packages and dependencies; most of these can be achieved by running the install script:
+cd Backend
 
 .\install.sh
 
 
-Just make sure you are in the right directory before trying to run this script.
+For front-end make sure node is installed.
+Then in a separate terminal same again for front end:
+cd Visualisation
+
+cd visualisation-app
+
+.\install-server.sh
 
 ## To run the backend api server:
 cd Backend
