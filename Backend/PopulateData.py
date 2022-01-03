@@ -1,24 +1,19 @@
-# import Github from the PyGithub library
 from os import name
 from github import Github      # need to pip install the PyGithub library
 import json                    # used for dictionary to string, need to install json library
 import os.path                 # to save JSON data in visualisation src folder
 import requests
 
+# Can annonymise data but makes unit testing fail
+# from faker import Faker     # for anonymising names
+# from collections import defaultdict
 
-# Import faker library - must install faker!
-from faker import Faker     # for anonymising names
-from collections import defaultdict
-
-faker  = Faker()
-names  = defaultdict(faker.name)
+# faker  = Faker()
+# names  = defaultdict(faker.name)
 
 class PopulateData(object):
-# save Personal Access Code in txt file
-# note: when pasting file path, must replace "\" with "/".
 
     def getGithubUser(self, username):
-        #with open("C:/Users/Brendan/Documents/PersonalAccessToken.txt") as file:
         with open("PersonalAccessToken.txt") as file:         
             token = file.readline()
         
@@ -32,7 +27,6 @@ class PopulateData(object):
 
         return user
 
-    # no need to check for None value since we are not printing value in string format
     def extractDataIntoDictionary(self, user):
         followers = user.followers
         following = user.following
@@ -84,33 +78,8 @@ class PopulateData(object):
         
         return repoNames
 
-    def getContributors(self, repo):
-        contributors = []
-        contributorsURL = repo.contributors_url
-        page = 1
-        while(True):
-            request = requests.get(contributorsURL)
-            data = request.json()
-
-            for contributor in data:
-                dictionary = {
-                    "contributor": contributor['login'],
-                    "contributions": contributor['contributions']
-                }
-                contributors.append(dictionary)
-
-            amount_collected = len(data)
-            if(amount_collected == 30):
-                page = page + 1
-                contributorsURL = contributorsURL + "?page=" + str(page)
-            else:
-                break
-        return contributors        
-
-
     def getLanguageStats(self, user):
         repos = user.get_repos() 
-
         languageDictionary = {}
 
         for repo in repos:

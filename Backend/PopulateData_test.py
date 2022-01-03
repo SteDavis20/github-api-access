@@ -127,29 +127,7 @@ class PopulateDataTest(unittest.TestCase):
         user = pd.getGithubUser("SteDavis27")
         repos = []
         self.assertEqual(repos, pd.getRepoNames(user))
-
-    def testGetRepoContributors(self):
-        pd = PopulateData()
-        user = pd.getGithubUser("SteDavis20")
-        repos = user.get_repos()
-        repo = repos[0]
-        contributors = [
-            {   "contributor": "SteDavis20",
-                "contributions": 76
-            }
-        ]
-        self.assertEqual(contributors, pd.getContributors(repo))
-
-
-    # can occur when user has not logged in to bash with github profile's gmail account
-    def testGetRepoNoContributors(self):
-        pd = PopulateData()
-        user = pd.getGithubUser("SteDavis20")
-        repos = user.get_repos()
-        repo = repos[1]
-        contributors = [
-        ]
-        self.assertEqual(contributors, pd.getContributors(repo))
+        
 
     # need to update this test as now storing result as list of dictionaries, instead of just 1 dictionary.
     def testGetLanguageStats(self):
