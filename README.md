@@ -9,10 +9,10 @@ Language statistics can also play a part in your total follower count; some foll
 
 
 # Sample Output
-![Screen recording demonstration of project](https://github.com/SteDavis20/github-api-access/blob/main/Github-Visualisation-Video.mkv?raw=true)
+![Screen recording demonstration of project](https://github.com/SteDavis20/github-api-access/blob/main/demo-compressed.mp4?raw=true)
 
 ## With Invalid Username as User Input
-![Screenshot of demonstration for when invalid username is inputted](https://github.com/SteDavis20/github-api-access/blob/main/invalid-username-image.png?raw=true)
+![Screenshot of demonstration for when invalid username is inputted](https://github.com/SteDavis20/github-api-access/blob/main/invalid-username-image.PNG?raw=true)
 
 
 # To Run the Project:
